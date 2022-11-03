@@ -112,48 +112,44 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         {
             jumpValue += chargeJump * Time.deltaTime;
         }
-
-
-
-
     }
 
-    private bool estaEnelSueloFunciton()
-    {
-        float extraheight = .5f;
-        Color rayColorCenter;
-        Color rayColorRight;
+    // private bool estaEnelSueloFunciton()
+    // {
+    //     float extraheight = .5f;
+    //     Color rayColorCenter;
+    //     Color rayColorRight;
 
-        RaycastHit2D raycastHitCenter = Physics2D.Raycast(colli.bounds.center, Vector2.down, colli.bounds.extents.y + extraheight, jumpableGround);
+    //     RaycastHit2D raycastHitCenter = Physics2D.Raycast(colli.bounds.center, Vector2.down, colli.bounds.extents.y + extraheight, jumpableGround);
 
-        RaycastHit2D raycastHitRight = Physics2D.Raycast(transform.position + new Vector3(11.8f, 0f), Vector2.down, colli.bounds.extents.y + 1f, jumpableGround);
+    //     RaycastHit2D raycastHitRight = Physics2D.Raycast(transform.position + new Vector3(11.8f, 0f), Vector2.down, colli.bounds.extents.y + 1f, jumpableGround);
 
-        if (raycastHitCenter.collider != null)
-        {
-            rayColorCenter = Color.green;
-        }
-        else
-        {
-            rayColorCenter = Color.red;
-        }
+    //     if (raycastHitCenter.collider != null)
+    //     {
+    //         rayColorCenter = Color.green;
+    //     }
+    //     else
+    //     {
+    //         rayColorCenter = Color.red;
+    //     }
 
-        if (raycastHitRight.collider != null)
-        {
-            rayColorRight = Color.green;
-        }
-        else
-        {
-            rayColorRight = Color.red;
-        }
-
-
-        Debug.DrawRay(colli.bounds.center, Vector2.down * (colli.bounds.extents.y + extraheight), rayColorCenter);
-
-        Debug.DrawRay(transform.position + new Vector3(11.8f, 0f), Vector2.down * (colli.bounds.extents.y + 1f), rayColorRight);
+    //     if (raycastHitRight.collider != null)
+    //     {
+    //         rayColorRight = Color.green;
+    //     }
+    //     else
+    //     {
+    //         rayColorRight = Color.red;
+    //     }
 
 
-        return raycastHitCenter.collider != null || raycastHitRight.collider != null;
-    }
+    //     Debug.DrawRay(colli.bounds.center, Vector2.down * (colli.bounds.extents.y + extraheight), rayColorCenter);
+
+    //     Debug.DrawRay(transform.position + new Vector3(11.8f, 0f), Vector2.down * (colli.bounds.extents.y + 1f), rayColorRight);
+
+
+    //     return raycastHitCenter.collider != null || raycastHitRight.collider != null;
+    // }
 
     // private void OnCollisionEnter2D(Collision2D collision)
     // {
@@ -179,41 +175,41 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         }
     }
 
-    private bool isWallRight()
-    {
-        RaycastHit2D raycastWallRight = Physics2D.Raycast(capsule.bounds.center, Vector2.right, capsule.bounds.extents.x + 0.5f, jumpableGround);
-        Color rayColor;
-        if (raycastWallRight.collider != null)
-        {
-            rayColor = Color.green;
-        }
-        else
-        {
-            rayColor = Color.red;
-        }
+    // private bool isWallRight()
+    // {
+    //     RaycastHit2D raycastWallRight = Physics2D.Raycast(capsule.bounds.center, Vector2.right, capsule.bounds.extents.x + 0.5f, jumpableGround);
+    //     Color rayColor;
+    //     if (raycastWallRight.collider != null)
+    //     {
+    //         rayColor = Color.green;
+    //     }
+    //     else
+    //     {
+    //         rayColor = Color.red;
+    //     }
 
-        Debug.DrawRay(capsule.bounds.center, Vector2.right * (capsule.bounds.extents.x + 0.5f), rayColor);
+    //     Debug.DrawRay(capsule.bounds.center, Vector2.right * (capsule.bounds.extents.x + 0.5f), rayColor);
 
-        return raycastWallRight.collider != null;
-    }
+    //     return raycastWallRight.collider != null;
+    // }
 
-    private bool isWallLeft()
-    {
-        RaycastHit2D raycastWallLeft = Physics2D.Raycast(colli.bounds.center, Vector2.left, colli.bounds.extents.x + 0.5f, jumpableGround);
-        Color rayColor;
-        if (raycastWallLeft.collider != null)
-        {
-            rayColor = Color.green;
-        }
-        else
-        {
-            rayColor = Color.red;
-        }
+    // private bool isWallLeft()
+    // {
+    //     RaycastHit2D raycastWallLeft = Physics2D.Raycast(colli.bounds.center, Vector2.left, colli.bounds.extents.x + 0.5f, jumpableGround);
+    //     Color rayColor;
+    //     if (raycastWallLeft.collider != null)
+    //     {
+    //         rayColor = Color.green;
+    //     }
+    //     else
+    //     {
+    //         rayColor = Color.red;
+    //     }
 
-        Debug.DrawRay(capsule.bounds.center, Vector2.left * (capsule.bounds.extents.x + 0.5f), rayColor);
+    //     Debug.DrawRay(capsule.bounds.center, Vector2.left * (capsule.bounds.extents.x + 0.5f), rayColor);
 
-        return raycastWallLeft.collider != null;
-    }
+    //     return raycastWallLeft.collider != null;
+    // }
 
     private void resetJump()
     {
