@@ -50,14 +50,14 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         Debug.Log("SUELO trigger: " + isInTheGround);
 
         // Flip the Player facing right and left
-        if (moveInput > 0 && facingRight == false)
-        {
-            Flip();
-        }
-        else if (moveInput < 0 && facingRight == true)
-        {
-            Flip();
-        }
+        // if (moveInput > 0 && facingRight == false)
+        // {
+        //     Flip();
+        // }
+        // else if (moveInput < 0 && facingRight == true)
+        // {
+        //     Flip();
+        // }
 
         // Bounce of the wall
         isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, 0.5f, jumpableGround);
