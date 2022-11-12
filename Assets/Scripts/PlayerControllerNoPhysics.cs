@@ -19,6 +19,10 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     bool isTouchingFront;
     public Transform frontCheck;
 
+    [Header("Animation")]
+    private Animator animator;
+
+
     /*
     *   Cosas para que no se me olviden
     *   1.- Para add una fuerza
@@ -34,12 +38,16 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         colli = GetComponent<BoxCollider2D>();
         capsule = GetComponent<CapsuleCollider2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         moveInput = Input.GetAxis("Horizontal");
+
+        // Animation running if velocity is positive
+        animator.SetFloat("Horizontal", Mathf.Abs(rb.velocity.x));
 
         Debug.Log("SUELO trigger: " + isInTheGround);
 
