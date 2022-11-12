@@ -51,6 +51,17 @@ public class PlayerControllerNoPhysics : MonoBehaviour
 
         Debug.Log("SUELO trigger: " + isInTheGround);
 
+        if (isInTheGround && (Mathf.Abs(rb.velocity.x) == 0) && Input.GetKey("space"))
+        {
+            // Animation jumpChargin true
+            animator.SetBool("isCharginJump", true);
+        }
+        else
+        {
+            // Animation jumpChargin false
+            animator.SetBool("isCharginJump", false);
+        }
+
         // Flip the Player facing right and left
         if (moveInput > 0 && facingRight == false)
         {
