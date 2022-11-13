@@ -45,12 +45,20 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     void Update()
     {
         moveInput = Input.GetAxis("Horizontal");
-
         // Animation running if velocity is positive
-        animator.SetFloat("Horizontal", Mathf.Abs(rb.velocity.x));
+        if (isTouchingFront)
+        {
+            animator.SetFloat("Horizontal", 0);
+        }
+        else
+        {
+            animator.SetFloat("Horizontal", Mathf.Abs(rb.velocity.x));
 
-        Debug.Log("SUELO trigger: " + isInTheGround);
+        }
 
+        Debug.Log("Esta en el suelo?: " + isInTheGround);
+
+        // Animation charge jump
         if (isInTheGround && (Mathf.Abs(rb.velocity.x) == 0) && Input.GetKey("space"))
         {
             // Animation jumpChargin true
@@ -73,7 +81,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         }
 
         // Bounce of the wall
-        isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, 0.5f, jumpableGround);
+        isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, 0.3f, jumpableGround);
         if (isTouchingFront && !isInTheGround)
         {
             rb.sharedMaterial = bounceMat;
@@ -97,7 +105,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         if (jumpValue >= maxJump && isInTheGround)
         {
             // estaEnelSuelo = false;
-            Debug.Log("if the jumpValue if more than the max, make jump the player");
+            Debug.Log("salto mayor que el maximo");
             float tempx = moveInput * walkSpeep;
             float tempy = jumpValue;
 
