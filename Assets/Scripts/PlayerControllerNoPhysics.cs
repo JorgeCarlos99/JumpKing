@@ -45,6 +45,8 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     void Update()
     {
         moveInput = Input.GetAxis("Horizontal");
+        
+        //ANIMATIONS
         // Animation running if velocity is positive
         if (isTouchingFront)
         {
@@ -55,8 +57,6 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             animator.SetFloat("Horizontal", Mathf.Abs(rb.velocity.x));
 
         }
-
-        Debug.Log("Esta en el suelo?: " + isInTheGround);
 
         // Animation charge jump
         if (isInTheGround && (Mathf.Abs(rb.velocity.x) == 0) && Input.GetKey("space"))
@@ -69,6 +69,8 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             // Animation jumpChargin false
             animator.SetBool("isCharginJump", false);
         }
+        //END ANIMATION
+
 
         // Flip the Player facing right and left
         if (moveInput > 0 && facingRight == false)
@@ -93,13 +95,15 @@ public class PlayerControllerNoPhysics : MonoBehaviour
 
         if (isInTheGround && Input.GetKeyUp("space") && jumpValue < maxJump)
         {
-            Debug.Log("SALTO MENOR QUE EL MAXIMO");
+            Debug.Log("salto menor que el maximo");
             float tempx = moveInput * walkSpeep;
             float tempy = jumpValue;
 
             rb.velocity = new Vector2(tempx, tempy);
             Invoke("resetJump", 0.2f);
         }
+
+        Debug.Log("Esta en el suelo?: " + isInTheGround);
 
         // if the jumpValue if more than the max, make jump the player
         if (jumpValue >= maxJump && isInTheGround)
