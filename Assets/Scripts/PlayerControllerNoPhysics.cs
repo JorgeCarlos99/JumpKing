@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class PlayerControllerNoPhysics : MonoBehaviour
 {
-    public float walkSpeep;
-    public float moveInput;
-    private Rigidbody2D rb;
-    public float jumpValue = 0.0f;
-    private BoxCollider2D colli;
-    private CapsuleCollider2D capsule;
+    [Header("PlayerStuff")]
+    [SerializeField] public LayerMask jumpableGround;
     public PhysicsMaterial2D bounceMat, normalMat;
-    [SerializeField] private LayerMask jumpableGround;
-    private float chargeJump = 1500f;
-    private float maxJump = 1000f;
-    private bool isInTheGround;
-    bool facingRight = true;
-    bool isTouchingFront;
+    private Rigidbody2D rb;
+    private BoxCollider2D colli;
+
+    [Header("Movement")]
+    // 280 For more horizontal jump
+    // 220 For more vertical jump
+    public float walkSpeep = 280f;
+    private float moveInput;
+    // 5 for slow fall
+    public float fallMultiplier = 5;
+    private float jumpValue = 0.0f;
+    public float chargeJump = 1500f;
+    public float maxJump = 800f;
     public Transform frontCheck;
+
+    [Header("Movement_Bool")]
+    private bool isInTheGround;
+    private bool facingRight = true;
+    private bool isTouchingFront;
 
     [Header("Animation")]
     private Animator animator;
@@ -37,7 +45,6 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         QualitySettings.vSyncCount = 1;
         rb = gameObject.GetComponent<Rigidbody2D>();
         colli = GetComponent<BoxCollider2D>();
-        capsule = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
     }
 
@@ -45,8 +52,8 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     void Update()
     {
         moveInput = Input.GetAxis("Horizontal");
-        
-        //ANIMATIONS
+
+        //            ANIMATIONS
         // Animation running if velocity is positive
         if (isTouchingFront)
         {
@@ -57,7 +64,6 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             animator.SetFloat("Horizontal", Mathf.Abs(rb.velocity.x));
 
         }
-
         // Animation charge jump
         if (isInTheGround && (Mathf.Abs(rb.velocity.x) == 0) && Input.GetKey("space"))
         {
@@ -69,7 +75,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             // Animation jumpChargin false
             animator.SetBool("isCharginJump", false);
         }
-        //END ANIMATION
+        //            END ANIMATION
 
 
         // Flip the Player facing right and left
@@ -108,16 +114,17 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         // if the jumpValue if more than the max, make jump the player
         if (jumpValue >= maxJump && isInTheGround)
         {
-            // estaEnelSuelo = false;
             Debug.Log("salto mayor que el maximo");
             float tempx = moveInput * walkSpeep;
             float tempy = jumpValue;
 
             rb.velocity = new Vector2(tempx, tempy);
-
             Invoke("resetJump", 0.2f);
         }
-
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
     }
 
     void FixedUpdate()
