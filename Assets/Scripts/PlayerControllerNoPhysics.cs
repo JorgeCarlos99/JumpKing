@@ -54,9 +54,22 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         moveInput = Input.GetAxis("Horizontal");
 
         //            ANIMATIONS
-        // Animation running if velocity is positive
+        // Animation running if velocity is positive 
+
+        // Is in the ground variable
+        if (isInTheGround)
+        {
+            animator.SetBool("isInTheGround", true);
+        }
+        else
+        {
+            animator.SetBool("isInTheGround", false);
+        }
+
+        // Horizontal varibale
         if (isTouchingFront)
         {
+            Debug.Log("aqui");
             animator.SetFloat("Horizontal", 0);
         }
         else
@@ -64,6 +77,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             animator.SetFloat("Horizontal", Mathf.Abs(rb.velocity.x));
 
         }
+        
         // Animation charge jump
         if (isInTheGround && (Mathf.Abs(rb.velocity.x) == 0) && Input.GetKey("space"))
         {

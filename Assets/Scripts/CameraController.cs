@@ -21,7 +21,7 @@ public class Level2 : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Vector2 changeToLevel2 = new Vector2(-3f, 276);
+            Vector2 changeToLevel2 = new Vector3(-3f, 276, 0);
             Camera.main.gameObject.transform.position = changeToLevel2;
         }
     }
