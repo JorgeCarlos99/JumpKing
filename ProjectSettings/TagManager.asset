@@ -45,12 +45,15 @@ TagManager:
   - name: Background
     uniqueID: 3951620311
     locked: 0
+  - name: Objetcs
+    uniqueID: 257542151
+    locked: 0
+  - name: Spears
+    uniqueID: 1250648537
+    locked: 0
   - name: Player
     uniqueID: 2752062349
     locked: 0
   - name: Platforms
     uniqueID: 2058951337
-    locked: 0
-  - name: Spears
-    uniqueID: 1250648537
     locked: 0

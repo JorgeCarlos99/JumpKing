@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+
 
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
+    public GameObject pauseFirstButton, menuFisrtButton;
+
     // Update is called once per frame
     void Update()
     {
@@ -33,6 +37,13 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
+
+        // clear selected objects
+        EventSystem.current.SetSelectedGameObject(null);
+
+        // set a new selected object
+        EventSystem.current.SetSelectedGameObject(pauseFirstButton);
+
         GameIsPaused = true;
     }
 
