@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
 
 public class PlayerControllerNoPhysics : MonoBehaviour
 {
@@ -9,6 +12,8 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     public PhysicsMaterial2D bounceMat, normalMat;
     private Rigidbody2D rb;
     private BoxCollider2D colli;
+    SpriteRenderer sprite;
+    public TextMeshProUGUI text;
 
     [Header("Movement")]
     // 280 For more horizontal jump
@@ -23,13 +28,12 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     public Transform frontCheck;
 
     [Header("Movement_Bool")]
-    private bool isInTheGround;
+    public bool isInTheGround;
     private bool facingRight = true;
-    private bool isTouchingFront;
+    public bool isTouchingFront;
 
     [Header("Animation")]
     private Animator animator;
-
 
     /*
     *   Cosas para que no se me olviden
@@ -46,11 +50,14 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         colli = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        text.text = "Velocidad = " + Mathf.Round(rb.velocity.x);
+
         moveInput = Input.GetAxis("Horizontal");
 
         //            ANIMATIONS
@@ -74,12 +81,12 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         }
         else
         {
-            animator.SetFloat("Horizontal", Mathf.Abs(rb.velocity.x));
-
+            // Math Round because it goes to velocity like 10e-14
+            animator.SetFloat("Horizontal", Mathf.Round(rb.velocity.x));
         }
-        
+
         // Animation charge jump
-        if (isInTheGround && (Mathf.Abs(rb.velocity.x) == 0) && Input.GetKey("space"))
+        if (isInTheGround && (Mathf.Round(rb.velocity.x) == 0) && Input.GetKey("space"))
         {
             // Animation jumpChargin true
             animator.SetBool("isCharginJump", true);
@@ -90,6 +97,8 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             animator.SetBool("isCharginJump", false);
         }
         //            END ANIMATION
+
+
 
 
         // Flip the Player facing right and left
