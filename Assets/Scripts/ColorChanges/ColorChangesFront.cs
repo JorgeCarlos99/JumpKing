@@ -16,7 +16,7 @@ public class ColorChangesFront : MonoBehaviour
     void Update()
     {
         // Color change 
-        if (playerControllerNoPhysics.isTouchingFront)
+        if (playerControllerNoPhysics.isTouchingFrontFunction)
         {
             sprite.color = new Color(0, 1, 0, 1);
         }
