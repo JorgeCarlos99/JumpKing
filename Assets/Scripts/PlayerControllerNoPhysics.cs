@@ -57,7 +57,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // isInTheCorner();
+        isInTheCorner();
         isTouchingFrontFunction = frontCheckerFunction();
         text.text = "Velocidad = " + Mathf.Round(rb.velocity.x);
 
@@ -116,11 +116,12 @@ public class PlayerControllerNoPhysics : MonoBehaviour
 
         // Bounce of the wall
         isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, 0.3f, jumpableGround);
-        if (isTouchingFrontFunction && isInTheGround)
-        {
-            Debug.Log("no rebota 1");
-            rb.sharedMaterial = normalMat;
-        }
+        // NO SE COMO ARREGLAR QUE NO REBOTE EN LAS ESQUINAS
+        // if (isTouchingFrontFunction && isInTheCorner())
+        // {
+        //     Debug.Log("no rebota 1");
+        //     rb.sharedMaterial = normalMat;
+        // }
 
         if (isTouchingFrontFunction && !isInTheGround)
         {
@@ -243,7 +244,8 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         Color rayColorRight;
 
         RaycastHit2D raycastHitCenter = Physics2D.Raycast(colli.bounds.center, Vector2.down, colli.bounds.extents.y + extraheight, jumpableGround);
-        RaycastHit2D raycastHitRight = Physics2D.Raycast(transform.position +  new Vector3(10f, 0f), Vector2.down * 13f, jumpableGround);
+        // RaycastHit2D raycastHitRight = Physics2D.Raycast(transform.position +  new Vector3(10f, 0f), Vector2.down * 13f, jumpableGround);
+        RaycastHit2D raycastHitRight = Physics2D.Raycast(colli.bounds.center * new Vector2(1.025f, 1f), Vector2.down, colli.bounds.extents.y + 9f, jumpableGround);
 
         if (raycastHitCenter.collider != null)
         {
@@ -263,8 +265,8 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             rayColorRight = Color.red;
         }
 
-        Debug.DrawRay(colli.bounds.center, Vector2.down * (colli.bounds.extents.y + extraheight), rayColorCenter);
-        Debug.DrawRay(transform.position +  new Vector3(10f, 0f), Vector2.down * 13f, rayColorRight);
+        // Debug.DrawRay(colli.bounds.center, Vector2.down * (colli.bounds.extents.y + extraheight), rayColorCenter);
+        Debug.DrawRay(colli.bounds.center * new Vector2(1.025f, 1f), Vector2.down * (colli.bounds.extents.y + 9f), rayColorRight);
         return raycastHitRight.collider != null;
     }
 }
