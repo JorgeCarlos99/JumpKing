@@ -8,7 +8,7 @@ public class Level1 : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Vector3 changeToLevel2 = new Vector3(-3f, -47, -10);
+            Vector3 changeToLevel2 = new Vector3(-3f, -47, 0);
             Camera.main.gameObject.transform.position = changeToLevel2;
         }
     }

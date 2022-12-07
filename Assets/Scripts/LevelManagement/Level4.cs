@@ -8,7 +8,7 @@ public class Level4 : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Vector3 changeToLevel3 = new Vector3(-3f, 920, -10);
+            Vector3 changeToLevel3 = new Vector3(-3f, 920, 0);
             Camera.main.gameObject.transform.position = changeToLevel3;
         }
     }

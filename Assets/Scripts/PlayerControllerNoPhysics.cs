@@ -65,42 +65,48 @@ public class PlayerControllerNoPhysics : MonoBehaviour
 
         //            ANIMATIONS
         // Animation running if velocity is positive 
-        if (Time.timeScale != 69420)
+
+        // Is in the ground variable
+        if (isInTheGround)
         {
-            // Is in the ground variable
-            if (isInTheGround)
+            animator.SetBool("isInTheGround", true);
+        }
+        else
+        {
+            animator.SetBool("isInTheGround", false);
+        }
+
+        // Horizontal varibale
+        if (isTouchingFrontFunction)
+        {
+            Debug.Log("aqui");
+            animator.SetFloat("Horizontal", 0);
+        }
+        else
+        {
+            // Math Round because it goes to velocity like 10e-14
+            if (Mathf.Round(rb.velocity.x) != 0)
             {
-                animator.SetBool("isInTheGround", true);
+                animator.SetFloat("Horizontal", 1);
             }
             else
             {
-                animator.SetBool("isInTheGround", false);
-            }
-
-            // Horizontal varibale
-            if (isTouchingFrontFunction)
-            {
-                Debug.Log("aqui");
                 animator.SetFloat("Horizontal", 0);
             }
-            else
-            {
-                // Math Round because it goes to velocity like 10e-14
-                animator.SetFloat("Horizontal", Mathf.Round(rb.velocity.x));
-            }
-
-            // Animation charge jump
-            if (isInTheGround && (Mathf.Round(rb.velocity.x) == 0) && Input.GetKey("space"))
-            {
-                // Animation jumpChargin true
-                animator.SetBool("isCharginJump", true);
-            }
-            else
-            {
-                // Animation jumpChargin false
-                animator.SetBool("isCharginJump", false);
-            }
         }
+
+        // Animation charge jump
+        if (isInTheGround && (Mathf.Round(rb.velocity.x) == 0) && Input.GetKey("space"))
+        {
+            // Animation jumpChargin true
+            animator.SetBool("isCharginJump", true);
+        }
+        else
+        {
+            // Animation jumpChargin false
+            animator.SetBool("isCharginJump", false);
+        }
+
         //            END ANIMATION
 
 
