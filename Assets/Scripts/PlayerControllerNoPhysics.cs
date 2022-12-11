@@ -14,6 +14,9 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     private BoxCollider2D colli;
     SpriteRenderer sprite;
     public TextMeshProUGUI text;
+    [SerializeField] private float maxYvelocity;
+    private bool canMove;
+    public Animation animKnockDown;
 
     [Header("Movement")]
     // 280 For more horizontal jump
@@ -47,6 +50,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animKnockDown = GetComponent<Animation>();
         QualitySettings.vSyncCount = 1;
         rb = gameObject.GetComponent<Rigidbody2D>();
         colli = GetComponent<BoxCollider2D>();
@@ -193,6 +197,31 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         if (Input.GetKey("space") && isInTheGround)
         {
             jumpValue += chargeJump * Time.deltaTime;
+        }
+        if (isInTheGround)
+        {
+            if (maxYvelocity <= -11f)
+            {
+                Debug.Log("daño caida" + maxYvelocity);
+                animator.SetTrigger("KnockDown");
+                maxYvelocity = 0;
+            }
+        }
+        if (this.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !this.animator.IsInTransition(0))
+        {
+            // Debug.Log("animacion");
+        }
+        if (animKnockDown.isPlaying)
+        {
+            Debug.Log("animacion 22222");
+        }
+
+        if (!isInTheGround)
+        {
+            if (rb.velocity.y < maxYvelocity)
+            {
+                maxYvelocity = rb.velocity.y;
+            }
         }
     }
 
