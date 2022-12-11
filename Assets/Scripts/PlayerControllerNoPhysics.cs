@@ -94,11 +94,31 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             }
         }
 
+        // Vertical variable
+        if (Mathf.Round(rb.velocity.y) > 0)
+        {
+            animator.SetFloat("Vertical", 1);
+        }
+        if (Mathf.Round(rb.velocity.y) < 0)
+        {
+            animator.SetFloat("Vertical", -1);
+        }
+        if (Mathf.Round(rb.velocity.y) == 0)
+        {
+            animator.SetBool("NoJumping", true);
+        }
+        else
+        {
+            animator.SetBool("NoJumping", false);
+        }
+
+
+
         // Animation charge jump
         if (isInTheGround && (Mathf.Round(rb.velocity.x) == 0) && Input.GetKey("space"))
         {
             // Animation jumpChargin true
-            animator.SetBool("isCharginJump", true);
+            animator.SetBool("isintheground", true);
         }
         else
         {
