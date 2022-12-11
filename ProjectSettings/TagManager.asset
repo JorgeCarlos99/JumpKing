@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - spear
   layers:
   - Default
   - TransparentFX

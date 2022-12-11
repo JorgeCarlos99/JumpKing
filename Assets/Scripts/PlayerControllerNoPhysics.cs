@@ -59,7 +59,6 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     {
         isInTheCorner();
         isTouchingFrontFunction = frontCheckerFunction();
-        text.text = "Velocidad = " + Mathf.Round(rb.velocity.x);
 
         moveInput = Input.GetAxis("Horizontal");
 
@@ -121,7 +120,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         }
 
         // Bounce of the wall
-        isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, 0.3f, jumpableGround);
+        // isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, 0.3f, jumpableGround);
         // NO SE COMO ARREGLAR QUE NO REBOTE EN LAS ESQUINAS
         // if (isTouchingFrontFunction && isInTheCorner())
         // {
