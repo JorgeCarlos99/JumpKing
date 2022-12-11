@@ -103,22 +103,12 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         {
             animator.SetFloat("Vertical", -1);
         }
-        if (Mathf.Round(rb.velocity.y) == 0)
-        {
-            animator.SetBool("NoJumping", true);
-        }
-        else
-        {
-            animator.SetBool("NoJumping", false);
-        }
-
-
 
         // Animation charge jump
         if (isInTheGround && (Mathf.Round(rb.velocity.x) == 0) && Input.GetKey("space"))
         {
             // Animation jumpChargin true
-            animator.SetBool("isintheground", true);
+            animator.SetBool("isCharginJump", true);
         }
         else
         {
