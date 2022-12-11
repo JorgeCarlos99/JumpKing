@@ -15,8 +15,10 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     SpriteRenderer sprite;
     public TextMeshProUGUI text;
     [SerializeField] private float maxYvelocity;
-    private bool canMove;
+    public bool canMove = true;
     public Animation animKnockDown;
+    public Animator m4a4animator;
+
 
     [Header("Movement")]
     // 280 For more horizontal jump
@@ -124,11 +126,11 @@ public class PlayerControllerNoPhysics : MonoBehaviour
 
 
         // Flip the Player facing right and left
-        if (moveInput > 0 && facingRight == false)
+        if (moveInput > 0 && facingRight == false && canMove)
         {
             Flip();
         }
-        else if (moveInput < 0 && facingRight == true)
+        else if (moveInput < 0 && facingRight == true && canMove)
         {
             Flip();
         }
@@ -184,13 +186,22 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     void FixedUpdate()
     {
         // Only can move if you are grounded
-        if (isInTheGround && jumpValue <= 0)
+        if (isInTheGround && jumpValue <= 0 && canMove)
         {
             rb.velocity = new Vector2(moveInput * walkSpeep, rb.velocity.y);
             if (rb.velocity.x != 0f && ((!Input.GetKey("right") && !Input.GetKey("left")) || Input.GetKey("space")))
             {
                 rb.velocity = new Vector2(0f, rb.velocity.y);
             }
+        }
+
+        if (isInTheGround)
+        {
+            canMove = true;
+        }
+        else
+        {
+            canMove = false;
         }
 
         // Save the time charge of the jump force
@@ -200,20 +211,12 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         }
         if (isInTheGround)
         {
-            if (maxYvelocity <= -11f)
+            if (maxYvelocity <= -1200f)
             {
                 Debug.Log("daño caida" + maxYvelocity);
-                animator.SetTrigger("KnockDown");
+                animator.SetTrigger("kb");
                 maxYvelocity = 0;
             }
-        }
-        if (this.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !this.animator.IsInTransition(0))
-        {
-            // Debug.Log("animacion");
-        }
-        if (animKnockDown.isPlaying)
-        {
-            Debug.Log("animacion 22222");
         }
 
         if (!isInTheGround)
@@ -223,6 +226,31 @@ public class PlayerControllerNoPhysics : MonoBehaviour
                 maxYvelocity = rb.velocity.y;
             }
         }
+
+        if (m4a4animator.GetCurrentAnimatorStateInfo(0).IsName("Knockdown") || m4a4animator.GetCurrentAnimatorStateInfo(0).IsName("Knockdown 0"))
+        {
+            canMove = false;
+            Debug.Log("animation cosa tal2");
+        }
+        else
+        {
+            canMove = true;
+        }
+
+        // int animLayer = 0;
+        // if (isPlaying(m4a4animator, "run"))
+        // {
+        //     Debug.Log("animation cosa tal");
+        //     // m4a4animator.Play("shoot");
+        // }
+        // bool isPlaying(Animator anim, string stateName)
+        // {
+        //     if (anim.GetCurrentAnimatorStateInfo(animLayer).IsName(stateName) &&
+        //             anim.GetCurrentAnimatorStateInfo(animLayer).normalizedTime < 1.0f)
+        //         return true;
+        //     else
+        //         return false;
+        // }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -232,7 +260,6 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             isInTheGround = true;
         }
     }
-
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "Ground")
@@ -240,7 +267,6 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             isInTheGround = false;
         }
     }
-
     public bool frontCheckerFunction()
     {
         // Right
