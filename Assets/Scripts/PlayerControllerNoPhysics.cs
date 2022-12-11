@@ -205,39 +205,94 @@ public class PlayerControllerNoPhysics : MonoBehaviour
 
     public bool frontCheckerFunction()
     {
+        // Right
         RaycastHit2D raycastWallRight = Physics2D.Raycast(colli.bounds.center, Vector2.right, colli.bounds.extents.x + 5f, jumpableGround);
-        RaycastHit2D raycastWallLeft = Physics2D.Raycast(colli.bounds.center, Vector2.left, colli.bounds.extents.x + 5f, jumpableGround);
+        RaycastHit2D raycastWallRightUpper = Physics2D.Raycast(new Vector3(colli.bounds.max.x, colli.bounds.max.y, 0f), Vector2.right, colli.bounds.extents.x, jumpableGround);
+        RaycastHit2D raycastWallRightBottom = Physics2D.Raycast(new Vector3(colli.bounds.max.x, colli.bounds.min.y, 0f), Vector2.right, colli.bounds.extents.x, jumpableGround);
 
-        Color rayColor;
+        // Left
+        RaycastHit2D raycastWallLeft = Physics2D.Raycast(colli.bounds.center, Vector2.left, colli.bounds.extents.x + 5f, jumpableGround);
+        RaycastHit2D raycastWallLeftUpper = Physics2D.Raycast(new Vector3(colli.bounds.min.x, colli.bounds.max.y, 0f), Vector2.left, colli.bounds.extents.x, jumpableGround);
+        RaycastHit2D raycastWallLeftBottom = Physics2D.Raycast(new Vector3(colli.bounds.min.x, colli.bounds.min.y, 0f), Vector2.left, colli.bounds.extents.x, jumpableGround);
+
+        // Right
+        Color rayColorRight;
+        Color rayColorRightUpper;
+        Color rayColorRightBottom;
+
+        // Left
+        Color rayColorLeft;
+        Color rayColorLeftUpper;
+        Color rayColorLeftBottom;
+
+        // Right
         if (raycastWallRight.collider != null)
         {
-            rayColor = Color.green;
+            rayColorRight = Color.green;
         }
         else
         {
-            rayColor = Color.red;
+            rayColorRight = Color.red;
         }
-        Color rayColor2;
+        if (raycastWallRightUpper.collider != null)
+        {
+            rayColorRightUpper = Color.green;
+        }
+        else
+        {
+            rayColorRightUpper = Color.red;
+        }
+        if (raycastWallRightBottom.collider != null)
+        {
+            rayColorRightBottom = Color.green;
+        }
+        else
+        {
+            rayColorRightBottom = Color.red;
+        }
+        
+        // Left
         if (raycastWallLeft.collider != null)
         {
-            rayColor2 = Color.green;
+            rayColorLeft = Color.green;
         }
         else
         {
-            rayColor2 = Color.red;
+            rayColorLeft = Color.red;
+        }
+        if (raycastWallLeftUpper.collider != null)
+        {
+            rayColorLeftUpper = Color.green;
+        }
+        else
+        {
+            rayColorLeftUpper = Color.red;
+        }
+        if (raycastWallLeftBottom.collider != null)
+        {
+            rayColorLeftBottom = Color.green;
+        }
+        else
+        {
+            rayColorLeftBottom = Color.red;
         }
 
-        Debug.DrawRay(colli.bounds.center, Vector2.right * (colli.bounds.extents.x + 5f), rayColor);
-        Debug.DrawRay(colli.bounds.center, Vector2.left * (colli.bounds.extents.x + 5f), rayColor2);
+        // Right
+        Debug.DrawRay(colli.bounds.center, Vector2.right * (colli.bounds.extents.x + 5f), rayColorRight);
+        Debug.DrawRay(new Vector3(colli.bounds.max.x, colli.bounds.max.y, 0f), Vector2.right * (colli.bounds.extents.x), rayColorRightUpper);
+        Debug.DrawRay(new Vector3(colli.bounds.max.x, colli.bounds.min.y, 0f), Vector2.right * (colli.bounds.extents.x), rayColorRightBottom);
 
-        return raycastWallRight.collider != null || raycastWallLeft.collider != null;
+        // Left
+        Debug.DrawRay(colli.bounds.center, Vector2.left * (colli.bounds.extents.x + 5f), rayColorLeft);
+        Debug.DrawRay(new Vector3(colli.bounds.min.x, colli.bounds.min.y, 0f), Vector2.left * (colli.bounds.extents.x), rayColorLeftBottom);
+        Debug.DrawRay(new Vector3(colli.bounds.min.x, colli.bounds.max.y, 0f), Vector2.left * (colli.bounds.extents.x), rayColorLeftUpper);
+
+        return raycastWallRight.collider != null || raycastWallLeft.collider != null || raycastWallRightUpper.collider != null || raycastWallRightBottom.collider != null || raycastWallLeftBottom.collider != null || raycastWallLeftUpper.collider != null;
     }
-
     private void resetJump()
     {
         jumpValue = 0;
     }
-
     void Flip()
     {
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
@@ -272,7 +327,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         }
 
         // Debug.DrawRay(colli.bounds.center, Vector2.down * (colli.bounds.extents.y + extraheight), rayColorCenter);
-        Debug.DrawRay(colli.bounds.center * new Vector2(1.025f, 1f), Vector2.down * (colli.bounds.extents.y + 9f), rayColorRight);
+        // Debug.DrawRay(colli.bounds.center * new Vector2(1.025f, 1f), Vector2.down * (colli.bounds.extents.y + 9f), rayColorRight);
         return raycastHitRight.collider != null;
     }
 }
