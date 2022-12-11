@@ -250,7 +250,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         {
             rayColorRightBottom = Color.red;
         }
-        
+
         // Left
         if (raycastWallLeft.collider != null)
         {
