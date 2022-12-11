@@ -155,7 +155,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             rb.sharedMaterial = normalMat;
         }
 
-        if (isInTheGround && Input.GetKeyUp("space") && jumpValue < maxJump)
+        if (isInTheGround && Input.GetKeyUp("space") && jumpValue < maxJump && canMove)
         {
             Debug.Log("salto menor que el maximo");
             float tempx = moveInput * walkSpeep;
@@ -168,7 +168,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         Debug.Log("Esta en el suelo?: " + isInTheGround);
 
         // if the jumpValue if more than the max, make jump the player
-        if (jumpValue >= maxJump && isInTheGround)
+        if (jumpValue >= maxJump && isInTheGround && canMove)
         {
             Debug.Log("salto mayor que el maximo");
             float tempx = moveInput * walkSpeep;
@@ -236,21 +236,6 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         {
             canMove = true;
         }
-
-        // int animLayer = 0;
-        // if (isPlaying(m4a4animator, "run"))
-        // {
-        //     Debug.Log("animation cosa tal");
-        //     // m4a4animator.Play("shoot");
-        // }
-        // bool isPlaying(Animator anim, string stateName)
-        // {
-        //     if (anim.GetCurrentAnimatorStateInfo(animLayer).IsName(stateName) &&
-        //             anim.GetCurrentAnimatorStateInfo(animLayer).normalizedTime < 1.0f)
-        //         return true;
-        //     else
-        //         return false;
-        // }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
