@@ -1,0 +1,85 @@
+{
+    "name": "OptionsMenu",
+    "maps": [
+        {
+            "name": "OptionsMenu",
+            "id": "fb843586-9890-4042-9cae-f7afbd757f9c",
+            "actions": [
+                {
+                    "name": "Play",
+                    "type": "Button",
+                    "id": "75d3d4b9-85dd-4549-8ad0-f2578b87c844",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ButtonDown",
+                    "type": "Button",
+                    "id": "a40ce7f9-d8fc-4f43-b616-46f62e6c92f4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ButtonUp",
+                    "type": "Button",
+                    "id": "d71c7e44-5b77-4eb6-8bd6-dd62a948be33",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b581da94-78ad-4c4d-a76d-b29787c6a047",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ButtonUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5feb62af-2feb-4527-9722-5ce023db53a9",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ButtonDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "83e49692-9a9b-4198-8b64-fb82a0da54a4",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Play",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5e0c003c-1ab2-457e-819f-8c531c341aae",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Play",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
