@@ -76,19 +76,6 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
-
-
-
-
-
-
-
-
-
-
-
         position = rb.transform.position;
         isInTheCorner();
         isTouchingFrontFunction = frontCheckerFunction();
@@ -180,6 +167,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             rb.sharedMaterial = normalMat;
         }
 
+
         if (isInTheGround && Input.GetKeyUp("space") && jumpValue < maxJump && canMove)
         {
             // Debug.Log("salto menor que el maximo");
@@ -202,6 +190,8 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             rb.velocity = new Vector2(tempx, tempy);
             Invoke("resetJump", 0.2f);
         }
+
+
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
@@ -229,11 +219,14 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             canMove = false;
         }
 
+
         // Save the time charge of the jump force
         if (Input.GetKey("space") && isInTheGround)
         {
             jumpValue += chargeJump * Time.deltaTime;
         }
+
+
         if (isInTheGround)
         {
             if (maxYvelocity <= -1200f)

@@ -11,49 +11,17 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject pauseFirstButton, menuFisrtButton;
 
+    public static PauseMenu instance;
 
-
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (GameIsPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
-        }
-    }
-
-    public void Resume()
-    {
-        pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
-        GameIsPaused = false;
-    }
-    void Pause()
-    {
-        pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
-
-        // clear selected objects
-        EventSystem.current.SetSelectedGameObject(null);
-
-        // set a new selected object
-        EventSystem.current.SetSelectedGameObject(pauseFirstButton);
-
-        GameIsPaused = true;
+        instance = this;
     }
 
     public void LoadMenu()
     {
-
         Time.timeScale = 1f;
-        ;
+
         SaveManager.instance.activeSave.position = PlayerControllerNoPhysics.instance.position;
         SaveManager.instance.activeSave.spears = SpearCounter.instance.spears;
         if (!GameObject.Find("SpearKaladinV1"))
@@ -72,7 +40,22 @@ public class PauseMenu : MonoBehaviour
     }
     public void QuitGame()
     {
+        SaveManager.instance.activeSave.position = PlayerControllerNoPhysics.instance.position;
+        SaveManager.instance.activeSave.spears = SpearCounter.instance.spears;
+        if (!GameObject.Find("SpearKaladinV1"))
+        {
+            Debug.Log("Saved 1 Spear");
+            SaveManager.instance.activeSave.lanza1 = "SpearKaladinV1";
+        }
+        if (!GameObject.Find("SpearKaladinV2"))
+        {
+            Debug.Log("Saved 2 Spear");
+            SaveManager.instance.activeSave.lanza2 = "SpearKaladinV2";
+        }
+
+        SaveManager.instance.Save();
         Debug.Log("Enhorabuena elden ring, saliste del videojuego 2");
+
         Application.Quit();
     }
 }
