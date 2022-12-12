@@ -18,6 +18,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     public bool canMove = true;
     public Animation animKnockDown;
     public Animator m4a4animator;
+    public Vector3 position;
 
 
     [Header("Movement")]
@@ -41,6 +42,12 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     [Header("Animation")]
     private Animator animator;
 
+    public static PlayerControllerNoPhysics instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     /*
     *   Cosas para que no se me olviden
     *   1.- Para add una fuerza
@@ -58,19 +65,26 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         colli = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+
+        if (SaveManager.instance.hasLoaded)
+        {
+            position = SaveManager.instance.activeSave.position;
+            rb.transform.position = position;
+        }
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        position = rb.transform.position;
         isInTheCorner();
         isTouchingFrontFunction = frontCheckerFunction();
 
         moveInput = Input.GetAxis("Horizontal");
 
-        //            ANIMATIONS
-        // Animation running if velocity is positive 
-
+        #region Animations
         // Is in the ground variable
         if (isInTheGround)
         {
@@ -84,7 +98,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         // Horizontal varibale
         if (isTouchingFrontFunction)
         {
-            Debug.Log("aqui");
+            // Debug.Log("aqui");
             animator.SetFloat("Horizontal", 0);
         }
         else
@@ -123,7 +137,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         }
 
         //            END ANIMATION
-
+        #endregion
 
         // Flip the Player facing right and left
         if (moveInput > 0 && facingRight == false && canMove)
@@ -146,18 +160,18 @@ public class PlayerControllerNoPhysics : MonoBehaviour
 
         if (isTouchingFrontFunction && !isInTheGround)
         {
-            Debug.Log("rebota");
+            // Debug.Log("rebota");
             rb.sharedMaterial = bounceMat;
         }
         else
         {
-            Debug.Log("no rebota");
+            // Debug.Log("no rebota");
             rb.sharedMaterial = normalMat;
         }
 
         if (isInTheGround && Input.GetKeyUp("space") && jumpValue < maxJump && canMove)
         {
-            Debug.Log("salto menor que el maximo");
+            // Debug.Log("salto menor que el maximo");
             float tempx = moveInput * walkSpeep;
             float tempy = jumpValue;
 
@@ -165,12 +179,12 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             Invoke("resetJump", 0.2f);
         }
 
-        Debug.Log("Esta en el suelo?: " + isInTheGround);
+        // Debug.Log("Esta en el suelo?: " + isInTheGround);
 
         // if the jumpValue if more than the max, make jump the player
         if (jumpValue >= maxJump && isInTheGround && canMove)
         {
-            Debug.Log("salto mayor que el maximo");
+            // Debug.Log("salto mayor que el maximo");
             float tempx = moveInput * walkSpeep;
             float tempy = jumpValue;
 
@@ -213,7 +227,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         {
             if (maxYvelocity <= -1200f)
             {
-                Debug.Log("daño caida" + maxYvelocity);
+                // Debug.Log("daño caida" + maxYvelocity);
                 animator.SetTrigger("kb");
                 maxYvelocity = 0;
             }
@@ -230,7 +244,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         if (m4a4animator.GetCurrentAnimatorStateInfo(0).IsName("Knockdown") || m4a4animator.GetCurrentAnimatorStateInfo(0).IsName("Knockdown 0"))
         {
             canMove = false;
-            Debug.Log("animation cosa tal2");
+            // Debug.Log("animation cosa tal2");
         }
         else
         {

@@ -11,6 +11,8 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject pauseFirstButton, menuFisrtButton;
 
+
+
     // Update is called once per frame
     void Update()
     {
@@ -49,7 +51,12 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
+
         Time.timeScale = 1f;
+        ;
+        SaveManager.instance.activeSave.position = PlayerControllerNoPhysics.instance.position;
+        Debug.Log(transform.position);
+        SaveManager.instance.Save();
         SceneManager.LoadScene("Menu");
     }
     public void QuitGame()
