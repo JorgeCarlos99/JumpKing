@@ -2434,7 +2434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeSave:
-    saveName: save1
+    saveName: Save1
     spears: 0
     position: {x: 0, y: 0, z: 0}
   hasLoaded: 0
@@ -3412,7 +3412,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574826374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -71.6, y: -158.4, z: 1}
+  m_LocalPosition: {x: -120.6, y: 1000.1, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15183,6 +15183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spears: 0
+  spearsLoaded: 0
 --- !u!61 &997525677
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21789,6 +21790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spears: 0
+  spearsLoaded: 0
 --- !u!61 &1846583079
 BoxCollider2D:
   m_ObjectHideFlags: 0

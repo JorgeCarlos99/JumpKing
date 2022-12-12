@@ -11,8 +11,6 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject pauseFirstButton, menuFisrtButton;
 
-
-
     // Update is called once per frame
     void Update()
     {
@@ -51,17 +49,24 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
-
         Time.timeScale = 1f;
-        ;
         SaveManager.instance.activeSave.position = PlayerControllerNoPhysics.instance.position;
-        Debug.Log(transform.position);
+        SaveManager.instance.activeSave.spears = SpearCounter.instance.spears;
+        if (!GameObject.Find("SpearKaladinV1"))
+        {
+            SaveManager.instance.activeSave.lanza1 = "SpearKaladinV1";
+        }
+        if (!GameObject.Find("SpearKaladinV2"))
+        {
+            SaveManager.instance.activeSave.lanza2 = "SpearKaladinV2";
+        }
+
         SaveManager.instance.Save();
         SceneManager.LoadScene("Menu");
     }
     public void QuitGame()
     {
-        Debug.Log("Enhorabuena elden ring, saliste del videojuego 2");
+        Debug.Log("Enhorabuena elden ring, saliste del videojuego pause menu");
         Application.Quit();
     }
 }

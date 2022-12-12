@@ -71,13 +71,24 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             position = SaveManager.instance.activeSave.position;
             rb.transform.position = position;
         }
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+
+
+
+
+
+
+
+
+
+
+
+
         position = rb.transform.position;
         isInTheCorner();
         isTouchingFrontFunction = frontCheckerFunction();

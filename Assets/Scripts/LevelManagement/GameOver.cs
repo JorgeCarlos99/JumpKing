@@ -13,7 +13,8 @@ public class GameOver : MonoBehaviour
     }
     
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.name == "Player" && spearCounter.spears >= 2) {
+        if (other.gameObject.name == "Player" && SpearCounter.instance.spears >= 2) {
+            Debug.Log("gg");
             CompleteGame();
         }
     }

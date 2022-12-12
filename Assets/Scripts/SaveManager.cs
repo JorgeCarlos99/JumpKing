@@ -51,12 +51,21 @@ public class SaveManager : MonoBehaviour
             var serializer = new XmlSerializer(typeof(SaveData));
             var stream = new FileStream(dataPath + "/" + activeSave.saveName + ".save", FileMode.Open);
             activeSave = serializer.Deserialize(stream) as SaveData;
+            
             stream.Close();
-
-            Debug.Log("Loaded" + dataPath + "/" + activeSave.saveName + ".save");
-
             hasLoaded = true;
+            Debug.Log("Loaded");
         }
+    }
+
+    public void DeleteSavedData()
+    {
+        string dataPath = Application.persistentDataPath;
+        if (System.IO.File.Exists(dataPath + "/" + activeSave.saveName + ".save"))
+        {
+            File.Delete(dataPath + "/" + activeSave.saveName + ".save");
+        }
+
     }
 
 }
@@ -67,4 +76,7 @@ public class SaveData
     public string saveName;
     public int spears;
     public Vector3 position;
+    public string lanza1;
+    public string lanza2;
+
 }

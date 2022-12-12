@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
     public void Quit()
     {
         
-        Debug.Log("Enhorabuena elden ring, saliste del videojuego");
+        Debug.Log("Enhorabuena elden ring, saliste del videojuego main menu");
         Application.Quit();
     }
 }
