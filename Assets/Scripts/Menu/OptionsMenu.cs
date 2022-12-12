@@ -10,7 +10,7 @@ public class OptionsMenu : MonoBehaviour
     public GameObject menu;
     Resolution[] resolutions;
     public GameObject Point;
-    public int SelectedButton = 1;
+    public int SelectedButton = 2;
     [SerializeField]
     private int NumberOfButtons;
     public Transform ButtonPosition1;
@@ -26,10 +26,12 @@ public class OptionsMenu : MonoBehaviour
             // FullScreen
             if (Screen.fullScreen)
             {
+                Debug.Log("No FullScreen");
                 FullScreen(false);
             }
             else
             {
+                Debug.Log("FullScreen");
                 FullScreen(true);
             }
         }
@@ -37,17 +39,6 @@ public class OptionsMenu : MonoBehaviour
         {
             options.gameObject.SetActive(false);
             menu.gameObject.SetActive(true);
-        }
-        else if (SelectedButton == 3)
-        {
-            // Menu
-            PauseMenu.instance.LoadMenu();
-        }
-        else if (SelectedButton == 4)
-        {
-            // Quit and save
-            Debug.Log("saliste del videojuego pausa menu tal");
-            PauseMenu.instance.QuitGame();
         }
     }
     private void OnButtonUp()

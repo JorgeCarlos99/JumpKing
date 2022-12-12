@@ -715,7 +715,7 @@ MonoBehaviour:
   options: {fileID: 283318041}
   menu: {fileID: 1527091877}
   Point: {fileID: 1839715808}
-  SelectedButton: 1
+  SelectedButton: 2
   NumberOfButtons: 2
   ButtonPosition1: {fileID: 476833338}
   ButtonPosition2: {fileID: 1780954011}
@@ -3934,7 +3934,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -854, y: -395}
+  m_AnchoredPosition: {x: -854, y: -400.4}
   m_SizeDelta: {x: 88.6401, y: 88.6401}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1839715810
