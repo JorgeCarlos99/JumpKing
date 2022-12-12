@@ -21,12 +21,13 @@ public class SpearCounter : MonoBehaviour
             spearsLoaded = SaveManager.instance.activeSave.spears;
             spears = spearsLoaded;
 
-            if (SaveManager.instance.activeSave.lanza1 != null)
+            if (SaveManager.instance.activeSave.lanza1 == "SpearKaladinV1")
             {
                 Debug.Log("You get the first spear");
                 GameObject.Find("SpearKaladinV1").SetActive(false);
             }
-            if (SaveManager.instance.activeSave.lanza2 != null)
+            
+            if (SaveManager.instance.activeSave.lanza2 == "SpearKaladinV2")
             {
                 Debug.Log("You get the second spear");
                 GameObject.Find("SpearKaladinV2").SetActive(false);
@@ -39,6 +40,7 @@ public class SpearCounter : MonoBehaviour
         if (other.gameObject.tag == "spear")
         {
             Debug.Log("You catch a spear");
+            // Destroy(other.gameObject);
             other.gameObject.SetActive(false);
             spears++;
         }

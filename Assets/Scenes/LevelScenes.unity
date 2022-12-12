@@ -2437,6 +2437,8 @@ MonoBehaviour:
     saveName: Save1
     spears: 0
     position: {x: 0, y: 0, z: 0}
+    lanza1: 
+    lanza2: 
   hasLoaded: 0
 --- !u!4 &403938594
 Transform:
@@ -3412,7 +3414,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574826374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -120.6, y: 1000.1, z: 1}
+  m_LocalPosition: {x: -106.6, y: 981.7, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14525,7 +14527,7 @@ GameObject:
   - component: {fileID: 935278766}
   - component: {fileID: 935278768}
   m_Layer: 0
-  m_Name: SpearKaladinV2 It moves
+  m_Name: SpearKaladinV2
   m_TagString: spear
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
