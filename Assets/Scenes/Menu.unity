@@ -2556,7 +2556,7 @@ GameObject:
   - component: {fileID: 672434478}
   - component: {fileID: 672434477}
   m_Layer: 5
-  m_Name: Sure
+  m_Name: Credits Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2625,7 +2625,13 @@ MonoBehaviour:
 
     Font
 
-    PressStart2P'
+    PressStart2P
+
+
+    Menu
+    Image
+
+    www.pixilart.com/klafooty'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3459136bdbb07174da4b13e7be1c8605, type: 2}
   m_sharedMaterial: {fileID: 2326708189306382278, guid: 3459136bdbb07174da4b13e7be1c8605, type: 2}
