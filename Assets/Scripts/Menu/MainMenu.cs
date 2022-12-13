@@ -22,11 +22,12 @@ public class MainMenu : MonoBehaviour
     // {
     //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     // }
-
+    
     // public void RestartGame()
     // {
     //     SaveManager.instance.DeleteSavedData();
     // }
+    
     // public void Quit()
     // {
     //     Debug.Log("Enhorabuena elden ring, saliste del videojuego main menu");
@@ -38,8 +39,18 @@ public class MainMenu : MonoBehaviour
         if (SelectedButton == 1)
         {
             // Play
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
+            string dataPath = Application.persistentDataPath;
+            if (System.IO.File.Exists(dataPath + "/" + "Save1.save"))
+            {
+                Debug.Log("Tiene datos");
+                SceneManager.LoadScene("CutScene2");
+            }
+            else
+            {
+                Debug.Log("No tiene datos, Primera vez jugando");
+                SceneManager.LoadScene("CutScene1");
+            }
+        }        
         else if (SelectedButton == 2)
         {
             // Reset Game
