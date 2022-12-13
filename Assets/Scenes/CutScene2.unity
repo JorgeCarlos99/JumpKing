@@ -736,7 +736,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Remember that you have to bring me the spears of kaladin and teft
+  m_text: Remember that you have to bring me the spears of Kaladin and Teft
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3459136bdbb07174da4b13e7be1c8605, type: 2}
   m_sharedMaterial: {fileID: 2326708189306382278, guid: 3459136bdbb07174da4b13e7be1c8605, type: 2}
