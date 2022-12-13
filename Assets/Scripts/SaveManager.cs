@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
+using System;
 public class SaveManager : MonoBehaviour
 {
     public SaveData activeSave;
@@ -17,18 +18,6 @@ public class SaveManager : MonoBehaviour
     {
         instance = this;
         Load();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void Save()
@@ -51,7 +40,7 @@ public class SaveManager : MonoBehaviour
             var serializer = new XmlSerializer(typeof(SaveData));
             var stream = new FileStream(dataPath + "/" + activeSave.saveName + ".save", FileMode.Open);
             activeSave = serializer.Deserialize(stream) as SaveData;
-            
+
             stream.Close();
             hasLoaded = true;
             Debug.Log("Loaded");
@@ -60,14 +49,20 @@ public class SaveManager : MonoBehaviour
 
     public void DeleteSavedData()
     {
-        string dataPath = Application.persistentDataPath;
-        if (System.IO.File.Exists(dataPath + "/" + activeSave.saveName + ".save"))
+        Debug.Log("aqui");
+        try
         {
-            File.Delete(dataPath + "/" + activeSave.saveName + ".save");
+            string dataPath = Application.persistentDataPath;
+            if (System.IO.File.Exists(dataPath + "/" + activeSave.saveName + ".save"))
+            {
+                File.Delete(dataPath + "/" + activeSave.saveName + ".save");
+            }
         }
-
+        catch (Exception e)
+        {
+            Debug.LogError(e, this);
+        }
     }
-
 }
 
 [System.Serializable]

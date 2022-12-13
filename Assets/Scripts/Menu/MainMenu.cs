@@ -8,6 +8,8 @@ public class MainMenu : MonoBehaviour
     public GameObject Point;
     public GameObject options;
     public GameObject menu;
+    public GameObject sureMenu;
+    public GameObject creditsMenu;
     public int SelectedButton = 1;
     [SerializeField]
     private int NumberOfButtons;
@@ -15,15 +17,16 @@ public class MainMenu : MonoBehaviour
     public Transform ButtonPosition2;
     public Transform ButtonPosition3;
     public Transform ButtonPosition4;
+    public Transform ButtonPosition5;
     // public void Play()
     // {
     //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     // }
 
-    public void RestartGame()
-    {
-        SaveManager.instance.DeleteSavedData();
-    }
+    // public void RestartGame()
+    // {
+    //     SaveManager.instance.DeleteSavedData();
+    // }
     // public void Quit()
     // {
     //     Debug.Log("Enhorabuena elden ring, saliste del videojuego main menu");
@@ -40,7 +43,8 @@ public class MainMenu : MonoBehaviour
         else if (SelectedButton == 2)
         {
             // Reset Game
-            SaveManager.instance.DeleteSavedData();
+            sureMenu.gameObject.SetActive(true);
+            menu.gameObject.SetActive(false);
         }
         else if (SelectedButton == 3)
         {
@@ -50,9 +54,15 @@ public class MainMenu : MonoBehaviour
         }
         else if (SelectedButton == 4)
         {
+            // Credits
+            creditsMenu.SetActive(true);
+            menu.SetActive(false);
+        }
+        else if (SelectedButton == 5)
+        {
             // Quit and save
             Debug.Log("saliste del videojuego pausa menu tal");
-            PauseMenu.instance.QuitGame();
+            Application.Quit();
         }
     }
     private void OnButtonUp()
@@ -93,6 +103,10 @@ public class MainMenu : MonoBehaviour
         else if (SelectedButton == 4)
         {
             Point.transform.position = ButtonPosition4.position;
+        }
+        else if (SelectedButton == 5)
+        {
+            Point.transform.position = ButtonPosition5.position;
         }
     }
 }
