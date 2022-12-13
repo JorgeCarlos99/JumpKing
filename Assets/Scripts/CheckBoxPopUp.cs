@@ -17,20 +17,20 @@ public class CheckBoxPopUp : MonoBehaviour
 
     void Start()
     {
-        fullText = "hola que tal dios que guapo esto.";
-        fullTextMin1 = "hola que tal dios que guapo esto";
+        fullText = "I did not expect to see another knight, I see that you have also taken the metals that make you jump almost as much as the Lord Jumper. Good luck Nameless Knight....";
+        fullTextMin1 = "I did not expect to see another knight, I see that you have also taken the metals that make you jump almost as much as the Lord Jumper. Good luck Nameless Knight...";
     }
 
     void Update()
     {
-        if (texto.text.Equals(fullTextMin1))
-        {
-            done = true;
-        }
-        else
-        {
-            done = false;
-        }
+        // if (texto.text.Equals(fullTextMin1))
+        // {
+        //     done = true;
+        // }
+        // else
+        // {
+        //     done = false;
+        // }
     }
 
     IEnumerator OnTriggerEnter2D(Collider2D collider)
@@ -38,7 +38,7 @@ public class CheckBoxPopUp : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             collided = true; //change collided to true
-            yield return new WaitForSeconds(0.1f); //wait 0.1 seconds
+            yield return new WaitForSeconds(0f); //wait 0.1 seconds
             if (collided == true) //check if collided is still true
             {
                 message.SetActive(true);
@@ -60,14 +60,14 @@ public class CheckBoxPopUp : MonoBehaviour
 
     IEnumerator ShowText()
     {
-        Debug.Log(" currentText " + currentText);
-        if (done)
-        {
-            Debug.Log(" currentText1 " + currentText);
+        // Debug.Log(" currentText " + currentText);
+        // if (done)
+        // {
+        //     Debug.Log(" currentText1 " + currentText);
 
-            currentText = "";
-        }
-        Debug.Log(" currentText1 " + currentText);
+        //     currentText = "";
+        // }
+        // Debug.Log(" currentText1 " + currentText);
         for (int i = 0; i < fullText.Length; i++)
         {
             currentText = fullText.Substring(0, i);

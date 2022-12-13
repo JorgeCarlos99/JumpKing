@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fbdfd6901777b489c769933d827316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeTime: 6
+  changeTime: 4.25
   sceneName: LevelScenes
 --- !u!4 &92130767
 Transform:
@@ -308,7 +308,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -400,6 +400,12 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: 3706202834068548421, guid: f598022db6687bf4ca30c5a86ca2f20f, type: 2}
     value: {fileID: 0}
+  - key: {fileID: -5618808688451555733, guid: 36734e153d6ce6247b75cbba2f652122, type: 2}
+    value: {fileID: 2036950237}
+  - key: {fileID: 6141404066932210973, guid: 36734e153d6ce6247b75cbba2f652122, type: 2}
+    value: {fileID: 978210518}
+  - key: {fileID: 4713750886281036543, guid: 36734e153d6ce6247b75cbba2f652122, type: 2}
+    value: {fileID: 1342137353}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &570978291
@@ -477,7 +483,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: hay mi madre el bicho, esta pelao el bicho
+  m_text: Nameless Knight
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3459136bdbb07174da4b13e7be1c8605, type: 2}
   m_sharedMaterial: {fileID: 2326708189306382278, guid: 3459136bdbb07174da4b13e7be1c8605, type: 2}
@@ -486,8 +492,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -697,7 +703,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036950233}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -730,7 +736,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tal no se que tal
+  m_text: Remember that you have to bring me the spears of kaladin and teft
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3459136bdbb07174da4b13e7be1c8605, type: 2}
   m_sharedMaterial: {fileID: 2326708189306382278, guid: 3459136bdbb07174da4b13e7be1c8605, type: 2}
@@ -739,8 +745,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 100663295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.019607844}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
