@@ -6,7 +6,6 @@ public class SpearCounter : MonoBehaviour
 {
     public int spears = 0;
     public int spearsLoaded;
-
     public static SpearCounter instance;
 
     private void Awake()

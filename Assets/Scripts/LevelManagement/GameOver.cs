@@ -5,21 +5,37 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
+    public GameObject timeLine;
     public SpearCounter spearCounter;
-    // Start is called before the first frame update
-    void Start()
+    public float changeTime;
+    public string sceneName;
+    private bool insideCheckBoxFinal;
+    public GameObject AppearsBoxColliderBehindPlayer;
+
+    // Update is called once per frame
+    void Update()
     {
-
-    }
-    
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.name == "Player" && SpearCounter.instance.spears >= 2) {
-            Debug.Log("gg");
-            CompleteGame();
+        if (insideCheckBoxFinal)
+        {
+            changeTime -= Time.deltaTime;
+            if (changeTime <= 0)
+            {
+                SceneManager.LoadScene(sceneName);
+            }
         }
+
     }
 
-    private void CompleteGame() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.name == "Player" && SpearCounter.instance.spears >= 2)
+        {
+            Debug.Log("gg");
+            timeLine.SetActive(true);
+            AppearsBoxColliderBehindPlayer.SetActive(true);
+            insideCheckBoxFinal = true;
+        } else {
+           AppearsBoxColliderBehindPlayer.SetActive(false); 
+        }
     }
 }
