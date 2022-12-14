@@ -31,8 +31,6 @@ public class SureMenu : MonoBehaviour
             {
                 Debug.LogError("ERROR AL BORRAR ->" + e);
             }
-            // FindObjectOfType<SaveManager>().DeleteSavedData();
-
         }
         else if (SelectedButton == 2)
         {
