@@ -42,6 +42,11 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     [Header("Animation")]
     private Animator animator;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioSource jumpSoundEffect;
+    [SerializeField] private AudioSource jumpLandSoundEffect;
+    [SerializeField] private AudioSource runEffect;
+
     public static PlayerControllerNoPhysics instance;
 
     private void Awake()
@@ -76,7 +81,11 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        position = rb.transform.position;
+        if (isInTheGround)
+        {
+            position = rb.transform.position;
+        }
+
         isInTheCorner();
         isTouchingFrontFunction = frontCheckerFunction();
 
@@ -170,11 +179,14 @@ public class PlayerControllerNoPhysics : MonoBehaviour
 
         if (isInTheGround && Input.GetKeyUp("space") && jumpValue < maxJump && canMove)
         {
-            // Debug.Log("salto menor que el maximo");
             float tempx = moveInput * walkSpeep;
             float tempy = jumpValue;
 
             rb.velocity = new Vector2(tempx, tempy);
+
+            Debug.Log("sonido saltar");
+            jumpSoundEffect.Play();
+
             Invoke("resetJump", 0.2f);
         }
 
@@ -188,6 +200,10 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             float tempy = jumpValue;
 
             rb.velocity = new Vector2(tempx, tempy);
+
+            Debug.Log("sonido saltar 2");
+            jumpSoundEffect.Play();
+
             Invoke("resetJump", 0.2f);
         }
 
@@ -200,10 +216,29 @@ public class PlayerControllerNoPhysics : MonoBehaviour
 
     void FixedUpdate()
     {
+        //Sound run
+        if ((Input.GetKey("right") || Input.GetKey("left")) && isInTheGround && !Input.GetKey("space"))
+        {
+            Debug.Log("sonido andar");
+            runEffect.enabled = true;
+        }
+        else
+        {
+            runEffect.enabled = false;
+        }
+
+
+
+
+
+
         // Only can move if you are grounded
+
         if (isInTheGround && jumpValue <= 0 && canMove)
         {
+
             rb.velocity = new Vector2(moveInput * walkSpeep, rb.velocity.y);
+
             if (rb.velocity.x != 0f && ((!Input.GetKey("right") && !Input.GetKey("left")) || Input.GetKey("space")))
             {
                 rb.velocity = new Vector2(0f, rb.velocity.y);
@@ -260,6 +295,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     {
         if (other.gameObject.tag == "Ground")
         {
+            jumpLandSoundEffect.Play();
             isInTheGround = true;
         }
     }
