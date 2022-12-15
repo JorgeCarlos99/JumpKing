@@ -8,9 +8,7 @@ using System;
 public class SaveManager : MonoBehaviour
 {
     public SaveData activeSave;
-
     public static SaveManager instance;
-
     public bool hasLoaded;
 
 
@@ -25,10 +23,9 @@ public class SaveManager : MonoBehaviour
         string dataPath = Application.persistentDataPath;
         var serializer = new XmlSerializer(typeof(SaveData));
         var stream = new FileStream(dataPath + "/" + activeSave.saveName + ".save", FileMode.Create);
-        serializer.Serialize(stream, activeSave);
-        stream.Close();
-
+        serializer.Serialize(stream, activeSave);        
         Debug.Log("Saved");
+        stream.Close();
     }
 
     public void Load()
@@ -43,19 +40,19 @@ public class SaveManager : MonoBehaviour
 
             stream.Close();
             hasLoaded = true;
-            Debug.Log("Loaded");
+            Debug.Log("Loaded Data");
         }
     }
 
     public void DeleteSavedData()
     {
-        Debug.Log("aqui");
         try
         {
             string dataPath = Application.persistentDataPath;
             if (System.IO.File.Exists(dataPath + "/" + activeSave.saveName + ".save"))
             {
                 File.Delete(dataPath + "/" + activeSave.saveName + ".save");
+                Debug.Log("Data delete" + dataPath + "/" + activeSave.saveName + ".save");
             }
         }
         catch (Exception e)

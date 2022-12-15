@@ -8,8 +8,8 @@ using UnityEngine.EventSystems;
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
-    public GameObject pauseMenuUI;
-    public GameObject pauseFirstButton, menuFisrtButton;
+    // public GameObject pauseMenuUI;
+    // public GameObject pauseFirstButton, menuFisrtButton;
 
     public static PauseMenu instance;
 

@@ -21,6 +21,7 @@ public class GameOver : MonoBehaviour
             if (changeTime <= 0)
             {
                 SceneManager.LoadScene(sceneName);
+                SaveManager.instance.DeleteSavedData();
             }
         }
 
