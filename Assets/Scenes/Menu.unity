@@ -1477,7 +1477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &283318042
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1560,13 +1560,15 @@ MonoBehaviour:
   options: {fileID: 283318041}
   menu: {fileID: 1527091877}
   Point: {fileID: 1839715808}
+  sliderEffect: {fileID: 655386678}
+  sliderMusic: {fileID: 1045776009}
+  audioMixer: {fileID: 24100000, guid: 632ecd0c01befff49b942755c3ec184d, type: 2}
   SelectedButton: 2
   NumberOfButtons: 2
   ButtonPosition1: {fileID: 476833338}
   ButtonPosition2: {fileID: 1780954011}
   ButtonPosition3: {fileID: 0}
   ButtonPosition4: {fileID: 0}
-  audioMixer: {fileID: 24100000, guid: 632ecd0c01befff49b942755c3ec184d, type: 2}
 --- !u!114 &283318046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1826,31 +1828,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 371109535}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1527091877}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 283318041}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &371109535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2964,31 +2942,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 568027558}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1527091877}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 283318041}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &568027558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3188,10 +3142,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1246141960}
   m_HandleRect: {fileID: 870672746}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 0
+  m_MinValue: 0.0001
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: -40
+  m_Value: 0.0001
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -4506,7 +4460,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4894,7 +4848,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5093,10 +5047,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1648480239}
   m_HandleRect: {fileID: 980895266}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 0
+  m_MinValue: 0.0001
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: -40
+  m_Value: 0.0001
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -5396,7 +5350,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6455,7 +6409,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1527091878
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6563,6 +6517,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdeeaedc2cfeb8445b09fcbc9089bac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sliderEffect: {fileID: 655386678}
+  sliderMusic: {fileID: 1045776009}
+  audioMixer: {fileID: 24100000, guid: 632ecd0c01befff49b942755c3ec184d, type: 2}
   Point: {fileID: 454899613}
   options: {fileID: 283318041}
   menu: {fileID: 1527091877}
@@ -7336,7 +7293,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

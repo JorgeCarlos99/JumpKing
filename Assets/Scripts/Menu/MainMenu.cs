@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    public Slider sliderEffect;
+    public Slider sliderMusic;
+    public AudioMixer audioMixer;
     public GameObject Point;
     public GameObject options;
     public GameObject menu;
@@ -22,12 +27,12 @@ public class MainMenu : MonoBehaviour
     // {
     //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     // }
-    
+
     // public void RestartGame()
     // {
     //     SaveManager.instance.DeleteSavedData();
     // }
-    
+
     // public void Quit()
     // {
     //     Debug.Log("Enhorabuena elden ring, saliste del videojuego main menu");
@@ -50,7 +55,7 @@ public class MainMenu : MonoBehaviour
                 Debug.Log("No tiene datos, Primera vez jugando");
                 SceneManager.LoadScene("CutScene1");
             }
-        }        
+        }
         else if (SelectedButton == 2)
         {
             // Reset Game
@@ -60,6 +65,27 @@ public class MainMenu : MonoBehaviour
         else if (SelectedButton == 3)
         {
             // Options
+
+            // Sound
+            float volumeMusicValue;
+            bool resultMusic = audioMixer.GetFloat("MusicVolume", out volumeMusicValue);
+            float valueLog10Music = volumeMusicValue / 20;
+
+            if (resultMusic)
+            {
+                sliderMusic.SetValueWithoutNotify(Mathf.Pow(10, valueLog10Music));
+            }
+
+            float volumeEffectValue;
+            bool resultEffect = audioMixer.GetFloat("EffectVolume", out volumeEffectValue);
+            float valueLog10Effect = volumeEffectValue / 20;
+
+            if (resultEffect)
+            {
+                sliderEffect.SetValueWithoutNotify(Mathf.Pow(10, valueLog10Effect));
+            }
+            // end sounds
+
             options.gameObject.SetActive(true);
             menu.gameObject.SetActive(false);
         }

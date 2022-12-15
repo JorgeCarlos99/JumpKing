@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class OptionsMenu : MonoBehaviour
     public GameObject menu;
     Resolution[] resolutions;
     public GameObject Point;
+    public Slider sliderEffect;
+    public Slider sliderMusic;
+    public AudioMixer audioMixer;
     public int SelectedButton = 2;
     [SerializeField]
     private int NumberOfButtons;
@@ -120,24 +124,61 @@ public class OptionsMenu : MonoBehaviour
         resolutionsDropDown.value = currentResolutionIndex;
         resolutionsDropDown.RefreshShownValue();
 
-        
+        // float volumeEffectValue;
+        // bool resultEffect = audioMixer.GetFloat("EffectVolume", out volumeEffectValue);
+
+        // if (resultEffect)
+        // {
+        //     Debug.Log("select music value" + volumeEffectValue);
+        //     sliderEffect.SetValueWithoutNotify(volumeEffectValue);
+        //     //audioMixer.SetFloat("EffectVolume", volumeEffectValue);
+        // }
+        // else
+        // {
+        // }
+
     }
 
-    public void SetResolution(int resolutionIndex) {
+    // private void Update()
+    // {
+    //     if (options.activeSelf)
+    //     {
+    //         float volumeMusicValue;
+    //         bool resultMusic = audioMixer.GetFloat("MusicVolume", out volumeMusicValue);
+    //         Debug.Log("respuesta: " + Mathf.Pow(10, 2));
+    //         if (resultMusic)
+    //         {
+    //             // sliderMusic.SetValueWithoutNotify(Mathf.Pow(10, volumeMusicValue));
+    //             sliderMusic.SetValueWithoutNotify(-15);
+    //             Debug.Log("select music value" + Mathf.Pow(10, volumeMusicValue));
+    //             //audioMixer.SetFloat("MusicVolume", volumeMusicValue);
+    //         }
+    //         else
+    //         {
+    //         }
+    //     }
+
+    // }
+
+    public void SetResolution(int resolutionIndex)
+    {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
     // volume
-    public AudioMixer audioMixer;
     public void SetMusicVolumen(float volume)
     {
-        audioMixer.SetFloat("MusicVolume", volume);
+        Debug.Log("volumen: " + volume);
+        Debug.Log("volumen 1 : " + Mathf.Log10(volume));
+        Debug.Log("volumen 2 : " + Mathf.Log10(volume) * 20);
+
+        audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
     }
 
     public void SetEffectVolumen(float volume)
     {
-        audioMixer.SetFloat("EffectVolume", volume);
+        audioMixer.SetFloat("EffectVolume", Mathf.Log10(volume) * 20);
     }
 
     // Graphics
