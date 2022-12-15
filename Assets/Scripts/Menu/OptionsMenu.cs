@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Audio;
 
 public class OptionsMenu : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class OptionsMenu : MonoBehaviour
     public Transform ButtonPosition4;
     public static PauseMenuScriptMove instance;
 
+    #region MoveOptionsMenu
     private void OnPlay()
     {
         if (SelectedButton == 1)
@@ -82,46 +84,65 @@ public class OptionsMenu : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        ReviewResolutions();
-    }
+    #endregion
+
+    // void Start()
+    // {
+    //     ReviewResolutions();
+    // }
 
     public void FullScreen(bool fullScreen)
     {
         Screen.fullScreen = fullScreen;
     }
 
-    public void ReviewResolutions()
+    private void Start()
     {
         resolutions = Screen.resolutions;
-        resolutionsDropDown.ClearOptions();
-        List<string> options = new List<string>();
-        int actualResolution = 0;
 
+        resolutionsDropDown.ClearOptions();
+
+        List<string> options = new List<string>();
+
+        int currentResolutionIndex = 0;
         for (int i = 0; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
 
-            if (Screen.fullScreen && resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+            if (resolutions[i].width == Screen.currentResolution.width &&
+                resolutions[i].height == Screen.currentResolution.height)
             {
-                actualResolution = i;
+                currentResolutionIndex = i;
             }
         }
         resolutionsDropDown.AddOptions(options);
-        resolutionsDropDown.value = actualResolution;
+        resolutionsDropDown.value = currentResolutionIndex;
         resolutionsDropDown.RefreshShownValue();
 
-        resolutionsDropDown.value = PlayerPrefs.GetInt("numberResolution", 0);
+        
     }
 
-    public void ChangeResolution(int indexResolution)
-    {
-        PlayerPrefs.SetInt("numberResolution", resolutionsDropDown.value);
-
-        Resolution resolution = resolutions[indexResolution];
+    public void SetResolution(int resolutionIndex) {
+        Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
+    // volume
+    public AudioMixer audioMixer;
+    public void SetMusicVolumen(float volume)
+    {
+        audioMixer.SetFloat("MusicVolume", volume);
+    }
+
+    public void SetEffectVolumen(float volume)
+    {
+        audioMixer.SetFloat("EffectVolume", volume);
+    }
+
+    // Graphics
+    public void SetQuality(int quialityIndex)
+    {
+        QualitySettings.SetQualityLevel(quialityIndex);
+    }
 }
