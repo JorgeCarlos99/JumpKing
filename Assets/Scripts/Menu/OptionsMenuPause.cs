@@ -5,17 +5,15 @@ using TMPro;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class OptionsMenu : MonoBehaviour
+public class OptionsMenuPause : MonoBehaviour
 {
-    public TMP_Dropdown resolutionsDropDown;
-    public GameObject options;
-    public GameObject menu;
-    Resolution[] resolutions;
     public GameObject Point;
+    public GameObject pauseMenuUI;
+    public GameObject optionsMenuUI;
+    public AudioMixer audioMixer;
     public Slider sliderEffect;
     public Slider sliderMusic;
-    public AudioMixer audioMixer;
-    public int SelectedButton = 2;
+    public int SelectedButton = 1;
     [SerializeField]
     private int NumberOfButtons;
     public Transform ButtonPosition1;
@@ -24,12 +22,20 @@ public class OptionsMenu : MonoBehaviour
     public Transform ButtonPosition4;
     public static PauseMenuScriptMove instance;
 
-    #region MoveOptionsMenu
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseMenuUI.SetActive(true);
+            optionsMenuUI.SetActive(false);
+        }
+    }
+
     private void OnPlay()
     {
         if (SelectedButton == 1)
         {
-            // FullScreen
+            // Full Screen
             if (Screen.fullScreen)
             {
                 Debug.Log("No FullScreen");
@@ -43,9 +49,38 @@ public class OptionsMenu : MonoBehaviour
         }
         else if (SelectedButton == 2)
         {
-            options.gameObject.SetActive(false);
-            menu.gameObject.SetActive(true);
+            // Back
+            pauseMenuUI.SetActive(true);
+            optionsMenuUI.SetActive(false);
         }
+        // else if (SelectedButton == 3)
+        // {
+        //     // Options
+        //     pauseMenuUI.SetActive(false);
+        //     optionsMenuUI.SetActive(true);
+        // }
+        // else if (SelectedButton == 4)
+        // {
+        //     // Quit and save
+        //     Debug.Log("saliste del videojuego pausa menu tal");
+        //     PauseMenu.instance.QuitGame();
+        // }
+
+    }
+
+    // volume
+    public void SetMusicVolumen(float volume)
+    {
+        audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
+    }
+    public void SetEffectVolumen(float volume)
+    {
+        audioMixer.SetFloat("EffectVolume", Mathf.Log10(volume) * 20);
+    }
+
+    public void FullScreen(bool fullScreen)
+    {
+        Screen.fullScreen = fullScreen;
     }
     private void OnButtonUp()
     {
@@ -86,60 +121,5 @@ public class OptionsMenu : MonoBehaviour
         {
             Point.transform.position = ButtonPosition4.position;
         }
-    }
-
-    #endregion
-
-    public void FullScreen(bool fullScreen)
-    {
-        Screen.fullScreen = fullScreen;
-    }
-
-    private void Start()
-    {
-        resolutions = Screen.resolutions;
-
-        resolutionsDropDown.ClearOptions();
-
-        List<string> options = new List<string>();
-
-        int currentResolutionIndex = 0;
-        for (int i = 0; i < resolutions.Length; i++)
-        {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
-            options.Add(option);
-
-            if (resolutions[i].width == Screen.currentResolution.width &&
-                resolutions[i].height == Screen.currentResolution.height)
-            {
-                currentResolutionIndex = i;
-            }
-        }
-        resolutionsDropDown.AddOptions(options);
-        resolutionsDropDown.value = currentResolutionIndex;
-        resolutionsDropDown.RefreshShownValue();
-    }
-
-    public void SetResolution(int resolutionIndex)
-    {
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
-    }
-
-    // volume
-    public void SetMusicVolumen(float volume)
-    {
-        audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
-    }
-
-    public void SetEffectVolumen(float volume)
-    {
-        audioMixer.SetFloat("EffectVolume", Mathf.Log10(volume) * 20);
-    }
-
-    // Graphics
-    public void SetQuality(int quialityIndex)
-    {
-        QualitySettings.SetQualityLevel(quialityIndex);
     }
 }

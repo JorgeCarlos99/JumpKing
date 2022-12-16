@@ -10,6 +10,7 @@ public class PauseMenuScriptMove : MonoBehaviour
     public GameObject Point;
     public bool GameIsPaused = false;
     public GameObject pauseMenuUI;
+    public GameObject optionsMenuUI;
     public GameObject pauseMenuUISpears;
     public GameObject kaladinSpear;
     public GameObject teftSpear;
@@ -19,6 +20,7 @@ public class PauseMenuScriptMove : MonoBehaviour
     public Transform ButtonPosition1;
     public Transform ButtonPosition2;
     public Transform ButtonPosition3;
+    public Transform ButtonPosition4;
     public static PauseMenuScriptMove instance;
 
     private void Awake()
@@ -58,15 +60,21 @@ public class PauseMenuScriptMove : MonoBehaviour
         pauseMenuUISpears.SetActive(true);
 
         // Kaladin Spear check
-        if (GameObject.Find("SpearKaladinV1")) {
+        if (GameObject.Find("SpearKaladinV1"))
+        {
             kaladinSpear.SetActive(false);
-        } else {
+        }
+        else
+        {
             kaladinSpear.SetActive(true);
         }
         // Teft spear check
-        if (GameObject.Find("SpearKaladinV2")) {
+        if (GameObject.Find("SpearKaladinV2"))
+        {
             teftSpear.SetActive(false);
-        } else {
+        }
+        else
+        {
             teftSpear.SetActive(true);
         }
         Time.timeScale = 0f;
@@ -88,11 +96,17 @@ public class PauseMenuScriptMove : MonoBehaviour
         }
         else if (SelectedButton == 3)
         {
+            // Options
+            pauseMenuUI.SetActive(false);
+            optionsMenuUI.SetActive(true);
+        }
+        else if (SelectedButton == 4)
+        {
             // Quit and save
             Debug.Log("saliste del videojuego pausa menu tal");
             PauseMenu.instance.QuitGame();
         }
-        
+
     }
     private void OnButtonUp()
     {
@@ -128,6 +142,10 @@ public class PauseMenuScriptMove : MonoBehaviour
         else if (SelectedButton == 3)
         {
             Point.transform.position = ButtonPosition3.position;
+        }
+        else if (SelectedButton == 4)
+        {
+            Point.transform.position = ButtonPosition4.position;
         }
     }
 
