@@ -11,15 +11,14 @@ public class CreditsMenu : MonoBehaviour
     [SerializeField]
     private int NumberOfButtons;
     public Transform ButtonPosition1;
-
-
+    
     private void OnPlay()
     {
         if (SelectedButton == 1)
         {
             // Volver al menu principal
-           creditsMenu.SetActive(false);
-           mainMenu.SetActive(true);
+            creditsMenu.SetActive(false);
+            mainMenu.SetActive(true);
         }
     }
 

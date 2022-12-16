@@ -15,6 +15,8 @@ public class MainMenu : MonoBehaviour
     public GameObject menu;
     public GameObject sureMenu;
     public GameObject creditsMenu;
+    [SerializeField] private AudioSource moveMainMenuCursor;
+    [SerializeField] private AudioSource spaceMainMenuCursor;
     public int SelectedButton = 1;
     [SerializeField]
     private int NumberOfButtons;
@@ -43,7 +45,14 @@ public class MainMenu : MonoBehaviour
     {
         if (SelectedButton == 1)
         {
+            spaceMainMenuCursor.Play();
             // Play
+            AudioSource audioMusic = GameObject.Find("BGMusic").GetComponent<AudioSource>();
+            while (audioMusic.volume > 0.01f)
+            {
+                audioMusic.volume -= Time.deltaTime / 5f;
+            }
+
             string dataPath = Application.persistentDataPath;
             if (System.IO.File.Exists(dataPath + "/" + "Save1.save"))
             {
@@ -65,7 +74,6 @@ public class MainMenu : MonoBehaviour
         else if (SelectedButton == 3)
         {
             // Options
-
             // Sound
             float volumeMusicValue;
             bool resultMusic = audioMixer.GetFloat("MusicVolume", out volumeMusicValue);
@@ -85,6 +93,7 @@ public class MainMenu : MonoBehaviour
                 sliderEffect.SetValueWithoutNotify(Mathf.Pow(10, valueLog10Effect));
             }
             // end sounds
+
 
             options.gameObject.SetActive(true);
             menu.gameObject.SetActive(false);
@@ -107,6 +116,7 @@ public class MainMenu : MonoBehaviour
         // Checks if the pointer needs to move down or up, in this case the poiter moves up one button
         if (SelectedButton > 1)
         {
+            moveMainMenuCursor.Play();
             SelectedButton -= 1;
         }
         MoveThePointer();
@@ -117,6 +127,7 @@ public class MainMenu : MonoBehaviour
         // Checks if the pointer needs to move down or up, in this case the poiter moves down one button
         if (SelectedButton < NumberOfButtons)
         {
+            moveMainMenuCursor.Play();
             SelectedButton += 1;
         }
         MoveThePointer();

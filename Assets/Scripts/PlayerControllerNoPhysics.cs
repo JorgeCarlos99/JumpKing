@@ -48,14 +48,19 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     [SerializeField] private AudioSource grassJumpSoundEffect;
     [SerializeField] private AudioSource grassJumpLandSoundEffect;
     [SerializeField] private AudioSource grassRunEffect;
+    [SerializeField] private AudioSource grassHardFloorEffect;
+
     // Clouds
     [SerializeField] private AudioSource cloudJumpSoundEffect;
     [SerializeField] private AudioSource cloudJumpLandSoundEffect;
     [SerializeField] private AudioSource cloudRunEffect;
+    [SerializeField] private AudioSource cloudHardFloorEffect;
+
     // Rocket
     [SerializeField] private AudioSource rocketJumpSoundEffect;
     [SerializeField] private AudioSource rocketJumpLandSoundEffect;
     [SerializeField] private AudioSource rocketRunEffect;
+    [SerializeField] private AudioSource rocketHardFloorEffect;
     public static PlayerControllerNoPhysics instance;
 
     private void Awake()
@@ -251,7 +256,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         {
             grassRunEffect.enabled = false;
         }
-        if (rb.velocity.x != 0 && isInTheCloud &&  !PauseMenu.instance.GameIsPaused && ((Input.GetKey("right") || Input.GetKey("left")) && !Input.GetKey("space")))
+        if (rb.velocity.x != 0 && isInTheCloud && !PauseMenu.instance.GameIsPaused && ((Input.GetKey("right") || Input.GetKey("left")) && !Input.GetKey("space")))
         {
             Debug.Log("sonido andar");
             cloudRunEffect.enabled = true;
@@ -260,7 +265,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         {
             cloudRunEffect.enabled = false;
         }
-        if (rb.velocity.x != 0 && isInTheRocket &&  !PauseMenu.instance.GameIsPaused && ((Input.GetKey("right") || Input.GetKey("left")) && !Input.GetKey("space")))
+        if (rb.velocity.x != 0 && isInTheRocket && !PauseMenu.instance.GameIsPaused && ((Input.GetKey("right") || Input.GetKey("left")) && !Input.GetKey("space")))
         {
             Debug.Log("sonido andar");
             rocketRunEffect.enabled = true;
@@ -302,9 +307,25 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         {
             if (maxYvelocity <= -1200f)
             {
-                // Debug.Log("daño caida" + maxYvelocity);
-                animator.SetTrigger("kb");
-                maxYvelocity = 0;
+                if (isInTheGrass)
+                {
+                    grassHardFloorEffect.Play();
+                    animator.SetTrigger("kb");
+                    maxYvelocity = 0;
+                }
+                if (isInTheCloud)
+                {
+                    cloudHardFloorEffect.Play();
+                    animator.SetTrigger("kb");
+                    maxYvelocity = 0;
+                }
+                if (isInTheRocket)
+                {
+                    rocketHardFloorEffect.Play();
+                    animator.SetTrigger("kb");
+                    maxYvelocity = 0;
+                }
+
             }
         }
 

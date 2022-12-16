@@ -15,6 +15,7 @@ public class OptionsMenu : MonoBehaviour
     public Slider sliderEffect;
     public Slider sliderMusic;
     public AudioMixer audioMixer;
+    [SerializeField] private AudioSource moveOptionsMenuCursor;
     public int SelectedButton = 2;
     [SerializeField]
     private int NumberOfButtons;
@@ -52,6 +53,7 @@ public class OptionsMenu : MonoBehaviour
         // Checks if the pointer needs to move down or up, in this case the poiter moves up one button
         if (SelectedButton > 1)
         {
+            moveOptionsMenuCursor.Play();
             SelectedButton -= 1;
         }
         MoveThePointer();
@@ -62,6 +64,7 @@ public class OptionsMenu : MonoBehaviour
         // Checks if the pointer needs to move down or up, in this case the poiter moves down one button
         if (SelectedButton < NumberOfButtons)
         {
+            moveOptionsMenuCursor.Play();
             SelectedButton += 1;
         }
         MoveThePointer();

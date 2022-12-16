@@ -16,6 +16,7 @@ public class SureMenu : MonoBehaviour
     public Transform ButtonPosition4;
     public GameObject mainMenu;
     public GameObject sureMenu;
+    [SerializeField] private AudioSource moveSureMenuCursor;
 
     private void OnPlay()
     {
@@ -43,6 +44,7 @@ public class SureMenu : MonoBehaviour
         // Checks if the pointer needs to move down or up, in this case the poiter moves up one button
         if (SelectedButton > 1)
         {
+            moveSureMenuCursor.Play();
             SelectedButton -= 1;
         }
         MoveThePointer();
@@ -53,6 +55,7 @@ public class SureMenu : MonoBehaviour
         // Checks if the pointer needs to move down or up, in this case the poiter moves down one button
         if (SelectedButton < NumberOfButtons)
         {
+            moveSureMenuCursor.Play();
             SelectedButton += 1;
         }
         MoveThePointer();
