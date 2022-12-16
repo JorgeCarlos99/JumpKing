@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ground
   - spear
+  - Grass
+  - Cloud
+  - Rocket
   layers:
   - Default
   - TransparentFX

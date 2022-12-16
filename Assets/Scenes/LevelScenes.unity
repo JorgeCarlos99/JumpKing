@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 22176062}
   m_Layer: 6
   m_Name: Rocket 2
-  m_TagString: Ground
+  m_TagString: Rocket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -906,7 +906,7 @@ GameObject:
   - component: {fileID: 79157366}
   m_Layer: 6
   m_Name: Wall Right Parent
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1415,7 +1415,7 @@ GameObject:
   - component: {fileID: 198789286}
   m_Layer: 6
   m_Name: rocket 4
-  m_TagString: Ground
+  m_TagString: Rocket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1788,7 +1788,7 @@ GameObject:
   - component: {fileID: 227544728}
   m_Layer: 6
   m_Name: Cloud 7
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2428,7 +2428,7 @@ GameObject:
   - component: {fileID: 312771195}
   m_Layer: 6
   m_Name: Cloud 3
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2539,7 +2539,7 @@ GameObject:
   - component: {fileID: 318398708}
   m_Layer: 6
   m_Name: Cloud 6
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2650,7 +2650,7 @@ GameObject:
   - component: {fileID: 320070117}
   m_Layer: 6
   m_Name: PaperPlane 3
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2761,7 +2761,7 @@ GameObject:
   - component: {fileID: 332974227}
   m_Layer: 6
   m_Name: Cloud 1
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3077,7 +3077,7 @@ GameObject:
   - component: {fileID: 367108744}
   m_Layer: 6
   m_Name: rocket 2
-  m_TagString: Ground
+  m_TagString: Rocket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4006,7 +4006,7 @@ GameObject:
   - component: {fileID: 515602369}
   m_Layer: 6
   m_Name: Cloud 4
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4796,6 +4796,7 @@ GameObject:
   - component: {fileID: 574826382}
   - component: {fileID: 574826383}
   - component: {fileID: 574826384}
+  - component: {fileID: 574826385}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4920,12 +4921,15 @@ MonoBehaviour:
   chargeJump: 1500
   maxJump: 800
   frontCheck: {fileID: 0}
-  isInTheGround: 0
+  isInTheGrass: 0
+  isInTheCloud: 0
+  isInTheRocket: 0
   isTouchingFront: 0
   isTouchingFrontFunction: 0
   jumpSoundEffect: {fileID: 574826382}
   jumpLandSoundEffect: {fileID: 574826383}
   runEffect: {fileID: 574826384}
+  bounceEffect: {fileID: 574826385}
 --- !u!61 &574826379
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5287,6 +5291,102 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!82 &574826385
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574826374}
+  m_Enabled: 0
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f2bc9c36f73ea50419060ec6eb40c246, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &581812713
 GameObject:
   m_ObjectHideFlags: 0
@@ -5376,7 +5476,7 @@ GameObject:
   - component: {fileID: 582104227}
   m_Layer: 6
   m_Name: Cloud 2
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5726,7 +5826,7 @@ GameObject:
   - component: {fileID: 620468119}
   m_Layer: 6
   m_Name: Cloud 5
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6986,7 +7086,7 @@ GameObject:
   - component: {fileID: 751030631}
   m_Layer: 6
   m_Name: rocket4
-  m_TagString: Ground
+  m_TagString: Rocket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7352,7 +7452,7 @@ GameObject:
   - component: {fileID: 802085202}
   m_Layer: 6
   m_Name: Platforms
-  m_TagString: Ground
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15551,7 +15651,7 @@ GameObject:
   - component: {fileID: 865524056}
   m_Layer: 0
   m_Name: Level 5
-  m_TagString: Untagged
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16467,7 +16567,7 @@ GameObject:
   - component: {fileID: 938759983}
   m_Layer: 6
   m_Name: Grid Plataforms
-  m_TagString: Ground
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16633,7 +16733,7 @@ GameObject:
   - component: {fileID: 956410726}
   m_Layer: 6
   m_Name: Cloud 4
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16744,7 +16844,7 @@ GameObject:
   - component: {fileID: 965120537}
   m_Layer: 6
   m_Name: PaperPlane 5
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19151,7 +19251,7 @@ GameObject:
   - component: {fileID: 1142470854}
   m_Layer: 6
   m_Name: rocketGuapo
-  m_TagString: Ground
+  m_TagString: Rocket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19262,7 +19362,7 @@ GameObject:
   - component: {fileID: 1202957538}
   m_Layer: 6
   m_Name: Cloud 7
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19373,7 +19473,7 @@ GameObject:
   - component: {fileID: 1227447011}
   m_Layer: 6
   m_Name: Rocket 1
-  m_TagString: Ground
+  m_TagString: Rocket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19689,7 +19789,7 @@ GameObject:
   - component: {fileID: 1252916116}
   m_Layer: 6
   m_Name: PaperPlane 2
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19918,7 +20018,7 @@ GameObject:
   - component: {fileID: 1307054013}
   m_Layer: 6
   m_Name: PaperPlane 6
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21124,7 +21224,7 @@ GameObject:
   - component: {fileID: 1495525584}
   m_Layer: 6
   m_Name: PaperPlane 4
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21397,7 +21497,7 @@ GameObject:
   - component: {fileID: 1519206488}
   m_Layer: 6
   m_Name: Cloud 2
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22494,7 +22594,7 @@ GameObject:
   - component: {fileID: 1599900797}
   m_Layer: 6
   m_Name: rocket 1
-  m_TagString: Ground
+  m_TagString: Rocket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22605,7 +22705,7 @@ GameObject:
   - component: {fileID: 1616589063}
   m_Layer: 6
   m_Name: Cloud 6
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22884,7 +22984,7 @@ GameObject:
   - component: {fileID: 1670266315}
   m_Layer: 6
   m_Name: Cloud 3
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24651,7 +24751,7 @@ GameObject:
   - component: {fileID: 1792418757}
   m_Layer: 6
   m_Name: Wall Left Parent
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24881,7 +24981,7 @@ GameObject:
   - component: {fileID: 1852023511}
   m_Layer: 6
   m_Name: Cloud 1
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25319,7 +25419,7 @@ GameObject:
   - component: {fileID: 1901013204}
   m_Layer: 6
   m_Name: Plataform OneWay
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26005,7 +26105,7 @@ GameObject:
   - component: {fileID: 2057998364}
   m_Layer: 6
   m_Name: Cloud 1 (1)
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26116,7 +26216,7 @@ GameObject:
   - component: {fileID: 2063255275}
   m_Layer: 6
   m_Name: rocket 3
-  m_TagString: Ground
+  m_TagString: Rocket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26626,7 +26726,7 @@ GameObject:
   - component: {fileID: 2141550707}
   m_Layer: 6
   m_Name: PaperPlane 1
-  m_TagString: Ground
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -34,7 +34,9 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     public Transform frontCheck;
 
     [Header("Movement_Bool")]
-    public bool isInTheGround;
+    public bool isInTheGrass;
+    public bool isInTheCloud;
+    public bool isInTheRocket;
     private bool facingRight = true;
     public bool isTouchingFront;
     public bool isTouchingFrontFunction;
@@ -46,6 +48,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     [SerializeField] private AudioSource jumpSoundEffect;
     [SerializeField] private AudioSource jumpLandSoundEffect;
     [SerializeField] private AudioSource runEffect;
+    [SerializeField] private AudioSource bounceEffect;
 
     public static PlayerControllerNoPhysics instance;
 
@@ -81,19 +84,20 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isInTheGround)
+        Debug.Log("grass ? : "+isInTheGroundAll());
+        if (isInTheGroundAll())
         {
             position = rb.transform.position;
         }
 
-        isInTheCorner();
+        // isInTheCorner();
         isTouchingFrontFunction = frontCheckerFunction();
 
         moveInput = Input.GetAxis("Horizontal");
 
         #region Animations
         // Is in the ground variable
-        if (isInTheGround)
+        if (isInTheGroundAll())
         {
             animator.SetBool("isInTheGround", true);
         }
@@ -131,7 +135,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         }
 
         // Animation charge jump
-        if (!PauseMenu.instance.GameIsPaused && isInTheGround && (Mathf.Round(rb.velocity.x) == 0) && Input.GetKey("space"))
+        if (!PauseMenu.instance.GameIsPaused && isInTheGroundAll() && (Mathf.Round(rb.velocity.x) == 0) && Input.GetKey("space"))
         {
             // Animation jumpChargin true
             animator.SetBool("isCharginJump", true);
@@ -164,19 +168,19 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         //     rb.sharedMaterial = normalMat;
         // }
 
-        if (isTouchingFrontFunction && !isInTheGround)
+        if (isTouchingFrontFunction && !isInTheGroundAll())
         {
-            // Debug.Log("rebota");
+            bounceEffect.enabled = true;
             rb.sharedMaterial = bounceMat;
         }
         else
         {
-            // Debug.Log("no rebota");
+            bounceEffect.enabled = false;
             rb.sharedMaterial = normalMat;
         }
 
 
-        if (isInTheGround && Input.GetKeyUp("space") && jumpValue < maxJump && canMove && !PauseMenu.instance.GameIsPaused)
+        if (isInTheGroundAll() && Input.GetKeyUp("space") && jumpValue < maxJump && canMove && !PauseMenu.instance.GameIsPaused)
         {
             float tempx = moveInput * walkSpeep;
             float tempy = jumpValue;
@@ -190,7 +194,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         }
 
         // if the jumpValue if more than the max, make jump the player
-        if (jumpValue >= maxJump && isInTheGround && canMove && !PauseMenu.instance.GameIsPaused)
+        if (jumpValue >= maxJump && isInTheGroundAll() && canMove && !PauseMenu.instance.GameIsPaused)
         {
             // Debug.Log("salto mayor que el maximo");
             float tempx = moveInput * walkSpeep;
@@ -213,7 +217,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     void FixedUpdate()
     {
         //Sound run
-        if (!PauseMenu.instance.GameIsPaused && ((Input.GetKey("right") || Input.GetKey("left")) && isInTheGround && !Input.GetKey("space")))
+        if (!PauseMenu.instance.GameIsPaused && ((Input.GetKey("right") || Input.GetKey("left")) && isInTheGroundAll() && !Input.GetKey("space")))
         {
             Debug.Log("sonido andar");
             runEffect.enabled = true;
@@ -225,7 +229,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
 
 
         // Only can move if you are grounded
-        if (isInTheGround && jumpValue <= 0 && canMove && !PauseMenu.instance.GameIsPaused)
+        if (isInTheGroundAll() && jumpValue <= 0 && canMove && !PauseMenu.instance.GameIsPaused)
         {
             rb.velocity = new Vector2(moveInput * walkSpeep, rb.velocity.y);
             if (!PauseMenu.instance.GameIsPaused && (rb.velocity.x != 0f && ((!Input.GetKey("right") && !Input.GetKey("left")) || Input.GetKey("space"))))
@@ -234,7 +238,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             }
         }
 
-        if (isInTheGround)
+        if (isInTheGroundAll())
         {
             canMove = true;
         }
@@ -244,13 +248,14 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         }
 
         // Save the time charge of the jump force
-        if (!PauseMenu.instance.GameIsPaused && Input.GetKey("space") && isInTheGround)
+        if (!PauseMenu.instance.GameIsPaused && Input.GetKey("space") && isInTheGroundAll())
         {
+            Debug.Log("cargando");
             jumpValue += chargeJump * Time.deltaTime;
         }
 
 
-        if (isInTheGround)
+        if (isInTheGroundAll())
         {
             if (maxYvelocity <= -1200f)
             {
@@ -260,7 +265,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             }
         }
 
-        if (!isInTheGround)
+        if (!isInTheGroundAll())
         {
             if (rb.velocity.y < maxYvelocity)
             {
@@ -279,19 +284,49 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         }
     }
 
+    public bool isInTheGroundAll()
+    {
+        if (isInTheGrass || isInTheCloud || isInTheRocket)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Ground")
+        if (other.gameObject.tag == "Grass")
         {
             jumpLandSoundEffect.Play();
-            isInTheGround = true;
+            isInTheGrass = true;
+        }
+        if (other.gameObject.tag == "Cloud")
+        {
+            jumpLandSoundEffect.Play();
+            isInTheCloud = true;
+        }
+        if (other.gameObject.tag == "Rocket")
+        {
+            jumpLandSoundEffect.Play();
+            isInTheRocket = true;
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Ground")
+        if (other.gameObject.tag == "Grass")
         {
-            isInTheGround = false;
+            isInTheGrass = false;
+        }
+        if (other.gameObject.tag == "Cloud")
+        {
+            isInTheCloud = false;
+        }
+        if (other.gameObject.tag == "Rocket")
+        {
+            isInTheRocket = false;
         }
     }
     public bool frontCheckerFunction()
