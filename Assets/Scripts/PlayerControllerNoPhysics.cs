@@ -20,7 +20,6 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     public Animator m4a4animator;
     public Vector3 position;
 
-
     [Header("Movement")]
     // 280 For more horizontal jump
     // 220 For more vertical jump
@@ -45,11 +44,18 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     private Animator animator;
 
     [Header("Sounds")]
-    [SerializeField] private AudioSource jumpSoundEffect;
-    [SerializeField] private AudioSource jumpLandSoundEffect;
-    [SerializeField] private AudioSource runEffect;
-    [SerializeField] private AudioSource bounceEffect;
-
+    // Grass
+    [SerializeField] private AudioSource grassJumpSoundEffect;
+    [SerializeField] private AudioSource grassJumpLandSoundEffect;
+    [SerializeField] private AudioSource grassRunEffect;
+    // Clouds
+    [SerializeField] private AudioSource cloudJumpSoundEffect;
+    [SerializeField] private AudioSource cloudJumpLandSoundEffect;
+    [SerializeField] private AudioSource cloudRunEffect;
+    // Rocket
+    [SerializeField] private AudioSource rocketJumpSoundEffect;
+    [SerializeField] private AudioSource rocketJumpLandSoundEffect;
+    [SerializeField] private AudioSource rocketRunEffect;
     public static PlayerControllerNoPhysics instance;
 
     private void Awake()
@@ -84,7 +90,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("grass ? : "+isInTheGroundAll());
+        Debug.Log("grass ? : " + isInTheGroundAll());
         if (isInTheGroundAll())
         {
             position = rb.transform.position;
@@ -170,12 +176,10 @@ public class PlayerControllerNoPhysics : MonoBehaviour
 
         if (isTouchingFrontFunction && !isInTheGroundAll())
         {
-            bounceEffect.enabled = true;
             rb.sharedMaterial = bounceMat;
         }
         else
         {
-            bounceEffect.enabled = false;
             rb.sharedMaterial = normalMat;
         }
 
@@ -188,8 +192,18 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             rb.velocity = new Vector2(tempx, tempy);
 
             Debug.Log("sonido saltar");
-            jumpSoundEffect.Play();
-
+            if (isInTheGrass)
+            {
+                grassJumpSoundEffect.Play();
+            }
+            else if (isInTheCloud)
+            {
+                cloudJumpSoundEffect.Play();
+            }
+            else if (isInTheRocket)
+            {
+                rocketJumpSoundEffect.Play();
+            }
             Invoke("resetJump", 0.2f);
         }
 
@@ -203,7 +217,18 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             rb.velocity = new Vector2(tempx, tempy);
 
             Debug.Log("sonido saltar 2");
-            jumpSoundEffect.Play();
+            if (isInTheGrass)
+            {
+                grassJumpSoundEffect.Play();
+            }
+            else if (isInTheCloud)
+            {
+                cloudJumpSoundEffect.Play();
+            }
+            else if (isInTheRocket)
+            {
+                rocketJumpSoundEffect.Play();
+            }
 
             Invoke("resetJump", 0.2f);
         }
@@ -217,14 +242,32 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     void FixedUpdate()
     {
         //Sound run
-        if (!PauseMenu.instance.GameIsPaused && ((Input.GetKey("right") || Input.GetKey("left")) && isInTheGroundAll() && !Input.GetKey("space")))
+        if (rb.velocity.x != 0 && isInTheGrass && !PauseMenu.instance.GameIsPaused && ((Input.GetKey("right") || Input.GetKey("left")) && !Input.GetKey("space")))
         {
             Debug.Log("sonido andar");
-            runEffect.enabled = true;
+            grassRunEffect.enabled = true;
         }
         else
         {
-            runEffect.enabled = false;
+            grassRunEffect.enabled = false;
+        }
+        if (rb.velocity.x != 0 && isInTheCloud &&  !PauseMenu.instance.GameIsPaused && ((Input.GetKey("right") || Input.GetKey("left")) && !Input.GetKey("space")))
+        {
+            Debug.Log("sonido andar");
+            cloudRunEffect.enabled = true;
+        }
+        else
+        {
+            cloudRunEffect.enabled = false;
+        }
+        if (rb.velocity.x != 0 && isInTheRocket &&  !PauseMenu.instance.GameIsPaused && ((Input.GetKey("right") || Input.GetKey("left")) && !Input.GetKey("space")))
+        {
+            Debug.Log("sonido andar");
+            rocketRunEffect.enabled = true;
+        }
+        else
+        {
+            rocketRunEffect.enabled = false;
         }
 
 
@@ -300,17 +343,17 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     {
         if (other.gameObject.tag == "Grass")
         {
-            jumpLandSoundEffect.Play();
+            grassJumpLandSoundEffect.Play();
             isInTheGrass = true;
         }
         if (other.gameObject.tag == "Cloud")
         {
-            jumpLandSoundEffect.Play();
+            cloudJumpLandSoundEffect.Play();
             isInTheCloud = true;
         }
         if (other.gameObject.tag == "Rocket")
         {
-            jumpLandSoundEffect.Play();
+            rocketJumpLandSoundEffect.Play();
             isInTheRocket = true;
         }
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level5 : MonoBehaviour
+public class Level222 : MonoBehaviour
 {
     public GameObject bgMusicBirds;
     public GameObject bgMusicCave;
@@ -12,12 +12,12 @@ public class Level5 : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Vector3 changeToLevel3 = new Vector3(-3f, 1242, 0);
-            Camera.main.gameObject.transform.position = changeToLevel3;
-            bgMusicBirds.SetActive(false);
+            bgMusicBirds.SetActive(true);
             bgMusicCave.SetActive(false);
-            bgMusicClouds.SetActive(true);
+            bgMusicClouds.SetActive(false);
             bgMusicSpace.SetActive(false);
+            Vector3 changeToLevel2 = new Vector3(-3f, 275, 0);
+            Camera.main.gameObject.transform.position = changeToLevel2;
         }
     }
 }
