@@ -26773,7 +26773,7 @@ GameObject:
   - component: {fileID: 1937595722}
   - component: {fileID: 1937595723}
   m_Layer: 0
-  m_Name: FinalBoss BGMusic
+  m_Name: FinalBossBGMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

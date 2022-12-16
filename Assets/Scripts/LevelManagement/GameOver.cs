@@ -15,6 +15,16 @@ public class GameOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Fade out
+        if (insideCheckBoxFinal)
+        {
+            AudioSource audioMusic = GameObject.Find("FinalBossBGMusic").GetComponent<AudioSource>();
+            while (audioMusic.volume > 0.01f)
+            {
+                audioMusic.volume -= Time.deltaTime / 5f;
+            }
+        }
+
         if (insideCheckBoxFinal)
         {
             changeTime -= Time.deltaTime;
@@ -35,8 +45,10 @@ public class GameOver : MonoBehaviour
             timeLine.SetActive(true);
             AppearsBoxColliderBehindPlayer.SetActive(true);
             insideCheckBoxFinal = true;
-        } else {
-           AppearsBoxColliderBehindPlayer.SetActive(false); 
+        }
+        else
+        {
+            AppearsBoxColliderBehindPlayer.SetActive(false);
         }
     }
 }
