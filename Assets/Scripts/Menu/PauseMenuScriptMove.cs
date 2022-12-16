@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class PauseMenuScriptMove : MonoBehaviour
 {
@@ -14,6 +16,9 @@ public class PauseMenuScriptMove : MonoBehaviour
     public GameObject pauseMenuUISpears;
     public GameObject kaladinSpear;
     public GameObject teftSpear;
+    public Slider sliderEffect;
+    public Slider sliderMusic;
+    public AudioMixer audioMixer;
     public int SelectedButton = 1;
     [SerializeField]
     private int NumberOfButtons;
@@ -99,6 +104,26 @@ public class PauseMenuScriptMove : MonoBehaviour
             // Options
             pauseMenuUI.SetActive(false);
             optionsMenuUI.SetActive(true);
+            // Sound
+            float volumeMusicValue;
+            bool resultMusic = audioMixer.GetFloat("MusicVolume", out volumeMusicValue);
+            float valueLog10Music = volumeMusicValue / 20;
+
+            if (resultMusic)
+            {
+                sliderMusic.SetValueWithoutNotify(Mathf.Pow(10, valueLog10Music));
+            }
+
+            float volumeEffectValue;
+            bool resultEffect = audioMixer.GetFloat("EffectVolume", out volumeEffectValue);
+            float valueLog10Effect = volumeEffectValue / 20;
+
+            if (resultEffect)
+            {
+                sliderEffect.SetValueWithoutNotify(Mathf.Pow(10, valueLog10Effect));
+            }
+            // end sounds
+            
         }
         else if (SelectedButton == 4)
         {
