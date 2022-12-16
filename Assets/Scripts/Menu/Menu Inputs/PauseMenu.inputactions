@@ -2,7 +2,7 @@
     "name": "PauseMenu",
     "maps": [
         {
-            "name": "PauseMenu",
+            "name": "MenuPause",
             "id": "39890a4c-ec46-47c8-a912-83262031a2a5",
             "actions": [
                 {

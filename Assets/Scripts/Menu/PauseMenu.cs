@@ -7,9 +7,12 @@ using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool GameIsPaused = false;
-    // public GameObject pauseMenuUI;
-    // public GameObject pauseFirstButton, menuFisrtButton;
+    public bool GameIsPaused = true;
+    public GameObject pauseMenuUI;
+    public GameObject optionsMenuUI;
+    public GameObject pauseMenuUISpears;
+    public GameObject kaladinSpear;
+    public GameObject teftSpear;
 
     public static PauseMenu instance;
 
@@ -17,6 +20,76 @@ public class PauseMenu : MonoBehaviour
     {
         instance = this;
     }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (GameIsPaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+        }
+    }
+    public void Resume()
+    {
+        if (optionsMenuUI.activeSelf)
+        {
+            Debug.Log("Menu opciones activado");
+            pauseMenuUI.SetActive(true);
+            pauseMenuUISpears.SetActive(true);
+
+            kaladinSpear.SetActive(true);
+            teftSpear.SetActive(true);
+
+            Time.timeScale = 0f;
+            GameIsPaused = true;
+        }
+        else
+        {
+            Debug.Log("Menu opciones no activado");
+            pauseMenuUI.SetActive(false);
+            pauseMenuUISpears.SetActive(false);
+
+            kaladinSpear.SetActive(false);
+            teftSpear.SetActive(false);
+
+            Time.timeScale = 1f;
+            GameIsPaused = false;
+        }
+    }
+    public void Pause()
+    {
+        pauseMenuUI.SetActive(true);
+        pauseMenuUISpears.SetActive(true);
+
+        // Kaladin Spear check
+        if (GameObject.Find("SpearKaladinV1"))
+        {
+            kaladinSpear.SetActive(false);
+        }
+        else
+        {
+            kaladinSpear.SetActive(true);
+        }
+        // Teft spear check
+        if (GameObject.Find("SpearKaladinV2"))
+        {
+            teftSpear.SetActive(false);
+        }
+        else
+        {
+            teftSpear.SetActive(true);
+        }
+        Time.timeScale = 0f;
+
+        GameIsPaused = true;
+    }
+
 
     public void LoadMenu()
     {

@@ -105,7 +105,6 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         // Horizontal varibale
         if (isTouchingFrontFunction)
         {
-            // Debug.Log("aqui");
             animator.SetFloat("Horizontal", 0);
         }
         else
@@ -132,7 +131,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         }
 
         // Animation charge jump
-        if (isInTheGround && (Mathf.Round(rb.velocity.x) == 0) && Input.GetKey("space") && !PauseMenuScriptMove.instance.GameIsPaused)
+        if (!PauseMenu.instance.GameIsPaused && isInTheGround && (Mathf.Round(rb.velocity.x) == 0) && Input.GetKey("space"))
         {
             // Animation jumpChargin true
             animator.SetBool("isCharginJump", true);
@@ -177,7 +176,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         }
 
 
-        if (isInTheGround && Input.GetKeyUp("space") && jumpValue < maxJump && canMove)
+        if (isInTheGround && Input.GetKeyUp("space") && jumpValue < maxJump && canMove && !PauseMenu.instance.GameIsPaused)
         {
             float tempx = moveInput * walkSpeep;
             float tempy = jumpValue;
@@ -190,10 +189,8 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             Invoke("resetJump", 0.2f);
         }
 
-        // Debug.Log("Esta en el suelo?: " + isInTheGround);
-
         // if the jumpValue if more than the max, make jump the player
-        if (jumpValue >= maxJump && isInTheGround && canMove)
+        if (jumpValue >= maxJump && isInTheGround && canMove && !PauseMenu.instance.GameIsPaused)
         {
             // Debug.Log("salto mayor que el maximo");
             float tempx = moveInput * walkSpeep;
@@ -207,7 +204,6 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             Invoke("resetJump", 0.2f);
         }
 
-
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
@@ -217,7 +213,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     void FixedUpdate()
     {
         //Sound run
-        if (!PauseMenuScriptMove.instance.GameIsPaused && ((Input.GetKey("right") || Input.GetKey("left")) && isInTheGround && !Input.GetKey("space") && !PauseMenuScriptMove.instance.GameIsPaused))
+        if (!PauseMenu.instance.GameIsPaused && ((Input.GetKey("right") || Input.GetKey("left")) && isInTheGround && !Input.GetKey("space")))
         {
             Debug.Log("sonido andar");
             runEffect.enabled = true;
@@ -229,11 +225,10 @@ public class PlayerControllerNoPhysics : MonoBehaviour
 
 
         // Only can move if you are grounded
-        if (isInTheGround && jumpValue <= 0 && canMove)
+        if (isInTheGround && jumpValue <= 0 && canMove && !PauseMenu.instance.GameIsPaused)
         {
             rb.velocity = new Vector2(moveInput * walkSpeep, rb.velocity.y);
-
-            if (!PauseMenuScriptMove.instance.GameIsPaused && (rb.velocity.x != 0f && ((!Input.GetKey("right") && !Input.GetKey("left")) || Input.GetKey("space"))))
+            if (!PauseMenu.instance.GameIsPaused && (rb.velocity.x != 0f && ((!Input.GetKey("right") && !Input.GetKey("left")) || Input.GetKey("space"))))
             {
                 rb.velocity = new Vector2(0f, rb.velocity.y);
             }
@@ -248,9 +243,8 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             canMove = false;
         }
 
-
         // Save the time charge of the jump force
-        if (Input.GetKey("space") && isInTheGround && !PauseMenuScriptMove.instance.GameIsPaused)
+        if (!PauseMenu.instance.GameIsPaused && Input.GetKey("space") && isInTheGround)
         {
             jumpValue += chargeJump * Time.deltaTime;
         }

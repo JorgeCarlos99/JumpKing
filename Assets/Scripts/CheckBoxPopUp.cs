@@ -9,16 +9,13 @@ public class CheckBoxPopUp : MonoBehaviour
     bool collided = false;
     public float delay = 0.1f;
     private string fullText;
-    private string fullTextMin1;
-    private bool done = false;
-    private string currentText = "";
+    // private bool done = false;
     private string doneText;
     public TextMeshProUGUI texto;
 
     void Start()
     {
         fullText = "I did not expect to see another knight, I see that you have also taken the metals that make you jump almost as much as the Lord Jumper. Good luck Nameless Knight....";
-        fullTextMin1 = "I did not expect to see another knight, I see that you have also taken the metals that make you jump almost as much as the Lord Jumper. Good luck Nameless Knight...";
     }
 
     void Update()
@@ -70,8 +67,8 @@ public class CheckBoxPopUp : MonoBehaviour
         // Debug.Log(" currentText1 " + currentText);
         for (int i = 0; i < fullText.Length; i++)
         {
-            currentText = fullText.Substring(0, i);
-            texto.text = currentText;
+            // currentText = fullText.Substring(0, i);
+            // texto.text = currentText;
             yield return new WaitForSeconds(delay);
         }
     }

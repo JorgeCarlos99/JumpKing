@@ -50,16 +50,32 @@ public class PauseMenuScriptMove : MonoBehaviour
 
     public void Resume()
     {
-        pauseMenuUI.SetActive(false);
-        pauseMenuUISpears.SetActive(false);
+        if (optionsMenuUI.activeSelf)
+        {
+            Debug.Log("Menu opciones activado");
+            pauseMenuUI.SetActive(true);
+            pauseMenuUISpears.SetActive(true);
 
-        kaladinSpear.SetActive(false);
-        teftSpear.SetActive(false);
+            kaladinSpear.SetActive(true);
+            teftSpear.SetActive(true);
 
-        Time.timeScale = 1f;
-        GameIsPaused = false;
+            // Time.timeScale = 1f;
+            // GameIsPaused = true;
+        }
+        else
+        {
+            Debug.Log("Menu opciones no activado");
+            pauseMenuUI.SetActive(false);
+            pauseMenuUISpears.SetActive(false);
+
+            kaladinSpear.SetActive(false);
+            teftSpear.SetActive(false);
+
+            Time.timeScale = 1f;
+            GameIsPaused = false;
+        }
     }
-    void Pause()
+    public void Pause()
     {
         pauseMenuUI.SetActive(true);
         pauseMenuUISpears.SetActive(true);
@@ -92,7 +108,7 @@ public class PauseMenuScriptMove : MonoBehaviour
         if (SelectedButton == 1)
         {
             // Resume
-            Resume();
+            PauseMenu.instance.Resume();
         }
         else if (SelectedButton == 2)
         {
@@ -104,6 +120,7 @@ public class PauseMenuScriptMove : MonoBehaviour
             // Options
             pauseMenuUI.SetActive(false);
             optionsMenuUI.SetActive(true);
+            GameIsPaused = true;
             // Sound
             float volumeMusicValue;
             bool resultMusic = audioMixer.GetFloat("MusicVolume", out volumeMusicValue);

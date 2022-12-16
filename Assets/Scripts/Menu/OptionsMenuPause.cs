@@ -53,19 +53,6 @@ public class OptionsMenuPause : MonoBehaviour
             pauseMenuUI.SetActive(true);
             optionsMenuUI.SetActive(false);
         }
-        // else if (SelectedButton == 3)
-        // {
-        //     // Options
-        //     pauseMenuUI.SetActive(false);
-        //     optionsMenuUI.SetActive(true);
-        // }
-        // else if (SelectedButton == 4)
-        // {
-        //     // Quit and save
-        //     Debug.Log("saliste del videojuego pausa menu tal");
-        //     PauseMenu.instance.QuitGame();
-        // }
-
     }
 
     // volume
