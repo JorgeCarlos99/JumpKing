@@ -8,17 +8,16 @@ public class MultiLanguage : MonoBehaviour
     private void Awake()
     {
         LocalizationManager.Read();
-        // LocalizationManager.Language = "Spanish";
 
-        switch (Application.systemLanguage)
-        {
-            case SystemLanguage.English:
-                LocalizationManager.Language = "English";
-                break;
-            case SystemLanguage.Spanish:
-                LocalizationManager.Language = "Spanish";
-                break;
-        }
+        // switch (Application.systemLanguage)
+        // {
+        //     case SystemLanguage.English:
+        //         LocalizationManager.Language = "English";
+        //         break;
+        //     case SystemLanguage.Spanish:
+        //         LocalizationManager.Language = "Spanish";
+        //         break;
+        // }
     }
 
     public void Language(string Language) {

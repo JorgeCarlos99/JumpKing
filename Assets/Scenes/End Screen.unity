@@ -1146,6 +1146,61 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &908942305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 908942307}
+  - component: {fileID: 908942306}
+  m_Layer: 0
+  m_Name: LocalizationManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &908942306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908942305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50cf2546973275f4caa0511552ee3aef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TableId: 1ndQFKgeEDNEUCkH_pkuAKwrzufeFPlTSAg23F63JP1Y
+  Sheets:
+  - Name: Menu
+    Id: 0
+  - Name: CutScene1
+    Id: 680901678
+  - Name: CutScene2
+    Id: 2122935099
+  - Name: EndScene
+    Id: 518341855
+  SaveFolder: {fileID: 102900000, guid: c392831e85f928548b8494fefd912562, type: 3}
+--- !u!4 &908942307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908942305}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &953807519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1357,6 +1412,7 @@ GameObject:
   - component: {fileID: 1213093323}
   - component: {fileID: 1213093322}
   - component: {fileID: 1213093324}
+  - component: {fileID: 1213093325}
   m_Layer: 5
   m_Name: King 1
   m_TagString: Untagged
@@ -1501,6 +1557,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1213093325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213093320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizationKey: EndScene.King1
 --- !u!1 &1221937683
 GameObject:
   m_ObjectHideFlags: 0
@@ -1559,6 +1628,7 @@ GameObject:
   - component: {fileID: 1389274293}
   - component: {fileID: 1389274292}
   - component: {fileID: 1389274291}
+  - component: {fileID: 1389274295}
   m_Layer: 5
   m_Name: Nameless Kinght Final speech
   m_TagString: Untagged
@@ -1703,6 +1773,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 121}
   m_SizeDelta: {x: 673.575, y: 373.0765}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1389274295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389274290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizationKey: EndScene.NamelessFinal
 --- !u!1 &1440386507
 GameObject:
   m_ObjectHideFlags: 0
@@ -2180,6 +2263,7 @@ GameObject:
   - component: {fileID: 1832474958}
   - component: {fileID: 1832474957}
   - component: {fileID: 1832474956}
+  - component: {fileID: 1832474959}
   m_Layer: 5
   m_Name: Nameless Knight 1
   m_TagString: Untagged
@@ -2324,6 +2408,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832474954}
   m_CullTransparentMesh: 1
+--- !u!114 &1832474959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832474954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizationKey: EndScene.Nameless1
 --- !u!1 &1849812184
 GameObject:
   m_ObjectHideFlags: 0
@@ -2603,6 +2700,7 @@ GameObject:
   - component: {fileID: 1921622895}
   - component: {fileID: 1921622894}
   - component: {fileID: 1921622896}
+  - component: {fileID: 1921622897}
   m_Layer: 5
   m_Name: King 2
   m_TagString: Untagged
@@ -2747,6 +2845,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1921622897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921622892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizationKey: EndScene.King2
 --- !u!1 &1938349614
 GameObject:
   m_ObjectHideFlags: 0
@@ -2759,6 +2870,7 @@ GameObject:
   - component: {fileID: 1938349618}
   - component: {fileID: 1938349617}
   - component: {fileID: 1938349616}
+  - component: {fileID: 1938349619}
   m_Layer: 5
   m_Name: Nameless Knight 2
   m_TagString: Untagged
@@ -2903,6 +3015,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938349614}
   m_CullTransparentMesh: 1
+--- !u!114 &1938349619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938349614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizationKey: EndScene.Nameless2
 --- !u!1 &1957352815
 GameObject:
   m_ObjectHideFlags: 0
@@ -3408,6 +3533,7 @@ GameObject:
   - component: {fileID: 2133042748}
   - component: {fileID: 2133042747}
   - component: {fileID: 2133042746}
+  - component: {fileID: 2133042750}
   m_Layer: 5
   m_Name: King 3
   m_TagString: Untagged
@@ -3552,3 +3678,16 @@ RectTransform:
   m_AnchoredPosition: {x: 623.21, y: 353.46}
   m_SizeDelta: {x: 673.575, y: 373.0765}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2133042750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133042745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2404a37f3bd75444aa4ad05d0f228347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizationKey: EndScene.King3
