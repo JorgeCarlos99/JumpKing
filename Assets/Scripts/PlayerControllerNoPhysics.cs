@@ -105,11 +105,36 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("grass ? : " + isInTheGroundAll());
+        //SAVE
         if (isInTheGroundAll())
         {
             position = rb.transform.position;
         }
+
+        SaveManager.instance.activeSave.position = position;
+        SaveManager.instance.activeSave.spears = SpearCounter.instance.spears;
+        if (!GameObject.Find("SpearKaladinV1"))
+        {
+            Debug.Log("Saved 1 Spear");
+            SaveManager.instance.activeSave.lanza1 = "SpearKaladinV1";
+        }
+        if (!GameObject.Find("SpearKaladinV2"))
+        {
+            Debug.Log("Saved 2 Spear");
+            SaveManager.instance.activeSave.lanza2 = "SpearKaladinV2";
+        }
+        // Save Volume
+        float volumeMusicValue;
+        bool resultMusic = audioMixer.GetFloat("MusicVolume", out volumeMusicValue);
+        float volumeEffectValue;
+        bool resultEffect = audioMixer.GetFloat("EffectVolume", out volumeEffectValue);
+        SaveManager.instance.activeSave.musicVolume = volumeMusicValue;
+        SaveManager.instance.activeSave.effectVolume = volumeEffectValue;
+
+        SaveManager.instance.Save();
+
+
+
 
         // isInTheCorner();
         isTouchingFrontFunction = frontCheckerFunction();

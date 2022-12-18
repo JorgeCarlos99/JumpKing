@@ -47,23 +47,15 @@ public class MainMenu : MonoBehaviour
         {
             // Music
             float musicVolumeLoad = SaveManager.instance.activeSave.musicVolume;
-            float finalMusic = musicVolumeLoad / 20;
-            Debug.Log("Musica " + Mathf.Pow(10, finalMusic));
-            sliderMusic.SetValueWithoutNotify(Mathf.Pow(10, finalMusic));
 
             // Effect
             float effectVolumeLoad = SaveManager.instance.activeSave.effectVolume;
-            float finalEffect = effectVolumeLoad / 20;
-            Debug.Log("Musica " + Mathf.Pow(10, finalEffect));
-            sliderEffect.SetValueWithoutNotify(Mathf.Pow(10, finalEffect));
 
-            // TODO ARREGLAR 
-            Debug.Log("musica" +  Mathf.Log10(musicVolumeLoad) * 20);
             // Music
-            audioMixer.SetFloat("MusicVolume", Mathf.Log10(musicVolumeLoad) * 20);
+            audioMixer.SetFloat("MusicVolume", musicVolumeLoad);
 
             // Effect
-            audioMixer.SetFloat("EffectVolume", Mathf.Log10(effectVolumeLoad) * 20);
+            audioMixer.SetFloat("EffectVolume", effectVolumeLoad);
         }
     }
 

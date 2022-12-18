@@ -48,18 +48,6 @@ public class PauseMenuScriptMove : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        // if (SaveManager.instance.hasLoaded)
-        // {
-        //     float musicVolumeLoad = SaveManager.instance.activeSave.musicVolume;
-        //     float finalMusic = musicVolumeLoad / 20;
-        //     Debug.Log("Musica " + Mathf.Pow(10, finalMusic));
-        //     sliderMusic.SetValueWithoutNotify(Mathf.Pow(10, finalMusic));
-        // }
-    }
-
-
     public void Resume()
     {
         if (optionsMenuUI.activeSelf)
@@ -70,9 +58,6 @@ public class PauseMenuScriptMove : MonoBehaviour
 
             kaladinSpear.SetActive(true);
             teftSpear.SetActive(true);
-
-            // Time.timeScale = 1f;
-            // GameIsPaused = true;
         }
         else
         {
@@ -157,6 +142,27 @@ public class PauseMenuScriptMove : MonoBehaviour
         else if (SelectedButton == 4)
         {
             // Quit and save
+            SaveManager.instance.activeSave.position = PlayerControllerNoPhysics.instance.position;
+            SaveManager.instance.activeSave.spears = SpearCounter.instance.spears;
+            if (!GameObject.Find("SpearKaladinV1"))
+            {
+                Debug.Log("Saved 1 Spear");
+                SaveManager.instance.activeSave.lanza1 = "SpearKaladinV1";
+            }
+            if (!GameObject.Find("SpearKaladinV2"))
+            {
+                Debug.Log("Saved 2 Spear");
+                SaveManager.instance.activeSave.lanza2 = "SpearKaladinV2";
+            }
+            // Save Volume
+            float volumeMusicValue;
+            bool resultMusic = audioMixer.GetFloat("MusicVolume", out volumeMusicValue);
+            float volumeEffectValue;
+            bool resultEffect = audioMixer.GetFloat("EffectVolume", out volumeEffectValue);
+            SaveManager.instance.activeSave.musicVolume = volumeMusicValue;
+            SaveManager.instance.activeSave.effectVolume = volumeEffectValue;
+
+            SaveManager.instance.Save();
             Debug.Log("saliste del videojuego pausa menu tal");
             PauseMenu.instance.QuitGame();
         }

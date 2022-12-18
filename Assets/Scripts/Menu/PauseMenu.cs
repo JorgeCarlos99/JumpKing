@@ -110,6 +110,14 @@ public class PauseMenu : MonoBehaviour
             Debug.Log("Saved 2 Spear");
             SaveManager.instance.activeSave.lanza2 = "SpearKaladinV2";
         }
+        // Save Volume
+        float volumeMusicValue;
+        bool resultMusic = audioMixer.GetFloat("MusicVolume", out volumeMusicValue);
+        float volumeEffectValue;
+        bool resultEffect = audioMixer.GetFloat("EffectVolume", out volumeEffectValue);
+        SaveManager.instance.activeSave.musicVolume = volumeMusicValue;
+        SaveManager.instance.activeSave.effectVolume = volumeEffectValue;
+
         SaveManager.instance.Save();
         SceneManager.LoadScene("Menu");
     }
