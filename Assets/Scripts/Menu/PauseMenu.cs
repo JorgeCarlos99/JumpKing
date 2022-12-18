@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
-
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -13,8 +14,10 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUISpears;
     public GameObject kaladinSpear;
     public GameObject teftSpear;
-
+    public AudioMixer audioMixer;
     public static PauseMenu instance;
+    public Slider sliderEffect;
+    public Slider sliderMusic;
 
     private void Awake()
     {
@@ -107,7 +110,6 @@ public class PauseMenu : MonoBehaviour
             Debug.Log("Saved 2 Spear");
             SaveManager.instance.activeSave.lanza2 = "SpearKaladinV2";
         }
-
         SaveManager.instance.Save();
         SceneManager.LoadScene("Menu");
     }
@@ -125,6 +127,14 @@ public class PauseMenu : MonoBehaviour
             Debug.Log("Saved 2 Spear");
             SaveManager.instance.activeSave.lanza2 = "SpearKaladinV2";
         }
+
+        // Save Volume
+        float volumeMusicValue;
+        bool resultMusic = audioMixer.GetFloat("MusicVolume", out volumeMusicValue);
+        float volumeEffectValue;
+        bool resultEffect = audioMixer.GetFloat("EffectVolume", out volumeEffectValue);
+        SaveManager.instance.activeSave.musicVolume = volumeMusicValue;
+        SaveManager.instance.activeSave.effectVolume = volumeEffectValue;
 
         SaveManager.instance.Save();
         Debug.Log("Enhorabuena elden ring, saliste del videojuego 2");

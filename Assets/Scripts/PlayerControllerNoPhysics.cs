@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Audio;
 
 
 public class PlayerControllerNoPhysics : MonoBehaviour
@@ -62,7 +63,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     [SerializeField] private AudioSource rocketRunEffect;
     [SerializeField] private AudioSource rocketHardFloorEffect;
     public static PlayerControllerNoPhysics instance;
-
+    public AudioMixer audioMixer;
     private void Awake()
     {
         instance = this;
@@ -87,8 +88,17 @@ public class PlayerControllerNoPhysics : MonoBehaviour
 
         if (SaveManager.instance.hasLoaded)
         {
+            // Position
             position = SaveManager.instance.activeSave.position;
             rb.transform.position = position;
+
+            // Music
+            // float musicVolumeLoad = SaveManager.instance.activeSave.musicVolume;
+            // audioMixer.SetFloat("MusicVolume", Mathf.Log10(musicVolumeLoad) * 20);
+
+            // Effect
+            // float effectVolumeLoad = SaveManager.instance.activeSave.effectVolume;
+            // audioMixer.SetFloat("EffectVolume", Mathf.Log10(effectVolumeLoad) * 20);
         }
     }
 

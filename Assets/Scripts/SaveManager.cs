@@ -23,7 +23,7 @@ public class SaveManager : MonoBehaviour
         string dataPath = Application.persistentDataPath;
         var serializer = new XmlSerializer(typeof(SaveData));
         var stream = new FileStream(dataPath + "/" + activeSave.saveName + ".save", FileMode.Create);
-        serializer.Serialize(stream, activeSave);        
+        serializer.Serialize(stream, activeSave);
         Debug.Log("Saved");
         stream.Close();
     }
@@ -70,5 +70,6 @@ public class SaveData
     public Vector3 position;
     public string lanza1;
     public string lanza2;
-
+    public float musicVolume;
+    public float effectVolume;
 }

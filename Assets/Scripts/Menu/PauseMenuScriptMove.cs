@@ -48,6 +48,18 @@ public class PauseMenuScriptMove : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        // if (SaveManager.instance.hasLoaded)
+        // {
+        //     float musicVolumeLoad = SaveManager.instance.activeSave.musicVolume;
+        //     float finalMusic = musicVolumeLoad / 20;
+        //     Debug.Log("Musica " + Mathf.Pow(10, finalMusic));
+        //     sliderMusic.SetValueWithoutNotify(Mathf.Pow(10, finalMusic));
+        // }
+    }
+
+
     public void Resume()
     {
         if (optionsMenuUI.activeSelf)
@@ -140,7 +152,7 @@ public class PauseMenuScriptMove : MonoBehaviour
                 sliderEffect.SetValueWithoutNotify(Mathf.Pow(10, valueLog10Effect));
             }
             // end sounds
-            
+
         }
         else if (SelectedButton == 4)
         {
