@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.SimpleLocalization;
 
 public class MultiLanguage : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        LocalizationManager.Read();
+        LocalizationManager.Language = "Spanish";
+
+        switch (Application.systemLanguage)
+        {
+            case SystemLanguage.English:
+                LocalizationManager.Language = "English";
+                break;
+            case SystemLanguage.Spanish:
+                LocalizationManager.Language = "Spanish";
+                break;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void Language(string Language) {
+        LocalizationManager.Language = Language;
     }
 }

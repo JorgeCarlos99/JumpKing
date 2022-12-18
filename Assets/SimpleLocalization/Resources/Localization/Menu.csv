@@ -1,2 +1,17 @@
 Key,English,Spanish
 Menu.Play,Play,Jugar
+Menu.Reset,Reset Game,Reiniciar Juego
+Menu.Options,Options,Opciones
+Menu.Credits,Credits,Creditos
+Menu.Quit,Quit,Salir
+MenuOptions.Title,Options,Opciones
+MenuOptions.Volume,Volume,Volumen
+MenuOptions.FullScreen,FullScreen,Pantalla completa
+MenuOptions.Effects,Effects,Effectos
+MenuOptions.Music,Music,Musica
+MenuOptions.Back,Back,Volver
+MenuSure.Yes,Yes,Si
+MenuSure.Text,Are you sure you want to start a new game? Any save data will be lost.,Seguro que quieres empezar un nuevo juego? Cualquier dato guardado se perdera.
+MenuCredits.Title,Credits,Creditos
+MenuCredits.Back,Back,Volver
+MenuCredits.Text,"Director, programmer, level design, music, animator","Director, programador, creador de niveles, musica, animador"
