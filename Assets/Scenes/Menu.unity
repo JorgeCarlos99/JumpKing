@@ -8381,8 +8381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdeeaedc2cfeb8445b09fcbc9089bac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sliderEffect: {fileID: 0}
-  sliderMusic: {fileID: 0}
+  sliderEffect: {fileID: 2005210671}
+  sliderMusic: {fileID: 314870480}
   audioMixer: {fileID: 24100000, guid: 632ecd0c01befff49b942755c3ec184d, type: 2}
   Point: {fileID: 454899613}
   options: {fileID: 283318041}
