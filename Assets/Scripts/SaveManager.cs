@@ -72,4 +72,5 @@ public class SaveData
     public string lanza2;
     public float musicVolume;
     public float effectVolume;
+    public string languageSelected;
 }

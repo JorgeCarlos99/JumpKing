@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using Assets.SimpleLocalization;
+
 
 public class MainMenu : MonoBehaviour
 {
@@ -41,6 +43,11 @@ public class MainMenu : MonoBehaviour
     //     Application.Quit();
     // }
 
+    private void Update()
+    {
+        SaveManager.instance.activeSave.languageSelected = LocalizationManager.Language;
+        SaveManager.instance.Save();
+    }
     private void Start()
     {
         if (SaveManager.instance.hasLoaded)
@@ -56,6 +63,9 @@ public class MainMenu : MonoBehaviour
 
             // Effect
             audioMixer.SetFloat("EffectVolume", effectVolumeLoad);
+
+            // Language
+            LocalizationManager.Language = SaveManager.instance.activeSave.languageSelected;
         }
     }
 
@@ -126,6 +136,15 @@ public class MainMenu : MonoBehaviour
         {
             // Quit and save
 
+            // Save Volume
+            float volumeMusicValue;
+            bool resultMusic = audioMixer.GetFloat("MusicVolume", out volumeMusicValue);
+            float volumeEffectValue;
+            bool resultEffect = audioMixer.GetFloat("EffectVolume", out volumeEffectValue);
+            SaveManager.instance.activeSave.musicVolume = volumeMusicValue;
+            SaveManager.instance.activeSave.effectVolume = volumeEffectValue;
+
+            SaveManager.instance.Save();
             Debug.Log("saliste del videojuego pausa menu tal");
             Application.Quit();
         }
