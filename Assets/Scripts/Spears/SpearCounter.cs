@@ -7,6 +7,7 @@ public class SpearCounter : MonoBehaviour
     public int spears = 0;
     public int spearsLoaded;
     public static SpearCounter instance;
+    public AudioSource soundSpearGet;
 
     private void Awake()
     {
@@ -40,6 +41,7 @@ public class SpearCounter : MonoBehaviour
         {
             Debug.Log("You catch a spear");
             // Destroy(other.gameObject);
+            soundSpearGet.Play();
             other.gameObject.SetActive(false);
             spears++;
         }
