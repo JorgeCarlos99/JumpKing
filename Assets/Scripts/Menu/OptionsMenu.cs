@@ -31,23 +31,35 @@ public class OptionsMenu : MonoBehaviour
         if (SelectedButton == 1)
         {
             // FullScreen
-            if (Screen.fullScreen)
-            {
-                Debug.Log("No FullScreen");
-                FullScreen(false);
-            }
-            else
-            {
-                Debug.Log("FullScreen");
-                FullScreen(true);
-            }
+            FullScreenMethod();
         }
         else if (SelectedButton == 2)
         {
-            options.gameObject.SetActive(false);
-            menu.gameObject.SetActive(true);
+            // Back to main menu
+            BackToMainMenu();
         }
     }
+
+    public void FullScreenMethod()
+    {
+        if (Screen.fullScreen)
+        {
+            Debug.Log("No FullScreen");
+            FullScreen(false);
+        }
+        else
+        {
+            Debug.Log("FullScreen");
+            FullScreen(true);
+        }
+    }
+
+    public void BackToMainMenu()
+    {
+        options.gameObject.SetActive(false);
+        menu.gameObject.SetActive(true);
+    }
+
     private void OnButtonUp()
     {
         // Checks if the pointer needs to move down or up, in this case the poiter moves up one button

@@ -12,8 +12,6 @@ public class SureMenu : MonoBehaviour
     private int NumberOfButtons;
     public Transform ButtonPosition1;
     public Transform ButtonPosition2;
-    public Transform ButtonPosition3;
-    public Transform ButtonPosition4;
     public GameObject mainMenu;
     public GameObject sureMenu;
     [SerializeField] private AudioSource moveSureMenuCursor;
@@ -22,23 +20,34 @@ public class SureMenu : MonoBehaviour
     {
         if (SelectedButton == 1)
         {
-            try
-            {
-                mainMenu.gameObject.SetActive(true);
-                sureMenu.gameObject.SetActive(false);
-                SaveManager.instance.DeleteSavedData();
-            }
-            catch (Exception e)
-            {
-                Debug.LogError("ERROR AL BORRAR ->" + e);
-            }
+            YesButtonSure();
         }
         else if (SelectedButton == 2)
         {
-            mainMenu.gameObject.SetActive(true);
-            sureMenu.gameObject.SetActive(false);
+            NoButtonSure();
         }
     }
+
+    public void NoButtonSure()
+    {
+        mainMenu.gameObject.SetActive(true);
+        sureMenu.gameObject.SetActive(false);
+    }
+
+    public void YesButtonSure()
+    {
+        try
+        {
+            mainMenu.gameObject.SetActive(true);
+            sureMenu.gameObject.SetActive(false);
+            SaveManager.instance.DeleteSavedData();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("ERROR AL BORRAR ->" + e);
+        }
+    }
+
     private void OnButtonLeft()
     {
         // Checks if the pointer needs to move down or up, in this case the poiter moves up one button

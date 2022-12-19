@@ -17,9 +17,14 @@ public class CreditsMenu : MonoBehaviour
         if (SelectedButton == 1)
         {
             // Volver al menu principal
-            creditsMenu.SetActive(false);
-            mainMenu.SetActive(true);
+            BackToMainMenuFromCredits();
         }
+    }
+
+    public void BackToMainMenuFromCredits()
+    {
+        creditsMenu.SetActive(false);
+        mainMenu.SetActive(true);
     }
 
     private void MoveThePointer()

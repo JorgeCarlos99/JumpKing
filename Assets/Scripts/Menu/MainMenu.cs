@@ -65,82 +65,107 @@ public class MainMenu : MonoBehaviour
     {
         if (SelectedButton == 1)
         {
-            spaceMainMenuCursor.Play();
-            // Play
-            AudioSource audioMusic = GameObject.Find("BGMusic").GetComponent<AudioSource>();
-            while (audioMusic.volume > 0.01f)
-            {
-                audioMusic.volume -= Time.deltaTime / 5f;
-            }
-
-            string dataPath = Application.persistentDataPath;
-            if (System.IO.File.Exists(dataPath + "/" + "Save1.save"))
-            {
-                Debug.Log("Tiene datos");
-                SceneManager.LoadScene("CutScene2");
-            }
-            else
-            {
-                Debug.Log("No tiene datos, Primera vez jugando");
-                SceneManager.LoadScene("CutScene1");
-            }
+            // Play Game
+            PlayMainMenu();
         }
         else if (SelectedButton == 2)
         {
             // Reset Game
-            sureMenu.gameObject.SetActive(true);
-            menu.gameObject.SetActive(false);
+            ResetGameMainMenu();
         }
         else if (SelectedButton == 3)
         {
             // Options
-            // Sound
-            float volumeMusicValue;
-            bool resultMusic = audioMixer.GetFloat("MusicVolume", out volumeMusicValue);
-            float valueLog10Music = volumeMusicValue / 20;
-
-            if (resultMusic)
-            {
-                sliderMusic.SetValueWithoutNotify(Mathf.Pow(10, valueLog10Music));
-            }
-
-            float volumeEffectValue;
-            bool resultEffect = audioMixer.GetFloat("EffectVolume", out volumeEffectValue);
-            float valueLog10Effect = volumeEffectValue / 20;
-
-            if (resultEffect)
-            {
-                sliderEffect.SetValueWithoutNotify(Mathf.Pow(10, valueLog10Effect));
-            }
-            // end sounds
-
-
-            options.gameObject.SetActive(true);
-            menu.gameObject.SetActive(false);
+            OpenOptionsMainMenu();
         }
         else if (SelectedButton == 4)
         {
             // Credits
-            creditsMenu.SetActive(true);
-            menu.SetActive(false);
+            OpenCreditsMainMenu();
         }
         else if (SelectedButton == 5)
         {
             // Quit and save
-
-            // Save Volume
-            float volumeMusicValue;
-            bool resultMusic = audioMixer.GetFloat("MusicVolume", out volumeMusicValue);
-            float volumeEffectValue;
-            bool resultEffect = audioMixer.GetFloat("EffectVolume", out volumeEffectValue);
-            SaveManager.instance.activeSave.musicVolume = volumeMusicValue;
-            SaveManager.instance.activeSave.effectVolume = volumeEffectValue;
-
-            SaveManager.instance.Save();
-            Debug.Log("saliste del videojuego pausa menu tal");
-            Application.Quit();
+            QuitAndSaveMainMenu();
         }
     }
+
+    public void QuitAndSaveMainMenu()
+    {
+        // Save Volume
+        float volumeMusicValue;
+        bool resultMusic = audioMixer.GetFloat("MusicVolume", out volumeMusicValue);
+        float volumeEffectValue;
+        bool resultEffect = audioMixer.GetFloat("EffectVolume", out volumeEffectValue);
+        SaveManager.instance.activeSave.musicVolume = volumeMusicValue;
+        SaveManager.instance.activeSave.effectVolume = volumeEffectValue;
+
+        SaveManager.instance.Save();
+        Debug.Log("saliste del videojuego pausa menu tal");
+        Application.Quit();
+    }
+
+    public void OpenCreditsMainMenu()
+    {
+        creditsMenu.SetActive(true);
+        menu.SetActive(false);
+    }
+
+    public void OpenOptionsMainMenu()
+    {
+        // Sound
+        float volumeMusicValue;
+        bool resultMusic = audioMixer.GetFloat("MusicVolume", out volumeMusicValue);
+        float valueLog10Music = volumeMusicValue / 20;
+
+        if (resultMusic)
+        {
+            sliderMusic.SetValueWithoutNotify(Mathf.Pow(10, valueLog10Music));
+        }
+
+        float volumeEffectValue;
+        bool resultEffect = audioMixer.GetFloat("EffectVolume", out volumeEffectValue);
+        float valueLog10Effect = volumeEffectValue / 20;
+
+        if (resultEffect)
+        {
+            sliderEffect.SetValueWithoutNotify(Mathf.Pow(10, valueLog10Effect));
+        }
+        // end sounds
+
+        options.gameObject.SetActive(true);
+        menu.gameObject.SetActive(false);
+    }
+
+    public void ResetGameMainMenu()
+    {
+        sureMenu.gameObject.SetActive(true);
+        menu.gameObject.SetActive(false);
+    }
+
+    public void PlayMainMenu()
+    {
+        spaceMainMenuCursor.Play();
+        // Play
+        AudioSource audioMusic = GameObject.Find("BGMusic").GetComponent<AudioSource>();
+        while (audioMusic.volume > 0.01f)
+        {
+            audioMusic.volume -= Time.deltaTime / 5f;
+        }
+
+        string dataPath = Application.persistentDataPath;
+        if (System.IO.File.Exists(dataPath + "/" + "Save1.save"))
+        {
+            Debug.Log("Tiene datos");
+            SceneManager.LoadScene("CutScene2");
+        }
+        else
+        {
+            Debug.Log("No tiene datos, Primera vez jugando");
+            SceneManager.LoadScene("CutScene1");
+        }
+    }
+
     private void OnButtonUp()
     {
         // Checks if the pointer needs to move down or up, in this case the poiter moves up one button
