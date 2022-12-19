@@ -9,15 +9,15 @@ public class MultiLanguage : MonoBehaviour
     {
         LocalizationManager.Read();
 
-        switch (Application.systemLanguage)
-        {
-            case SystemLanguage.English:
-                LocalizationManager.Language = "English";
-                break;
-            case SystemLanguage.Spanish:
-                LocalizationManager.Language = "Spanish";
-                break;
-        }
+        // switch (Application.systemLanguage)
+        // {
+        //     case SystemLanguage.English:
+        //         LocalizationManager.Language = "English";
+        //         break;
+        //     case SystemLanguage.Spanish:
+        //         LocalizationManager.Language = "Spanish";
+        //         break;
+        // }
     }
 
     public void Language(string Language)
