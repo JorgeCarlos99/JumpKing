@@ -43,11 +43,6 @@ public class MainMenu : MonoBehaviour
     //     Application.Quit();
     // }
 
-    private void Update()
-    {
-        SaveManager.instance.activeSave.languageSelected = LocalizationManager.Language;
-        SaveManager.instance.Save();
-    }
     private void Start()
     {
         if (SaveManager.instance.hasLoaded)

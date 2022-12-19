@@ -20,7 +20,8 @@ public class MultiLanguage : MonoBehaviour
         // }
     }
 
-    public void Language(string Language) {
+    public void Language(string Language)
+    {
         LocalizationManager.Language = Language;
     }
 }
