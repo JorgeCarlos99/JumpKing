@@ -58,9 +58,6 @@ public class MainMenu : MonoBehaviour
 
             // Effect
             audioMixer.SetFloat("EffectVolume", effectVolumeLoad);
-
-            // Language
-            LocalizationManager.Language = SaveManager.instance.activeSave.languageSelected;
         }
     }
 
