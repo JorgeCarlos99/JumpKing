@@ -15,6 +15,8 @@ public class OptionsMenu : MonoBehaviour
     public Slider sliderEffect;
     public Slider sliderMusic;
     public AudioMixer audioMixer;
+    public GameObject fullScreenCheckYes;
+    public GameObject fullScreenCheckNo;
     [SerializeField] private AudioSource moveOptionsMenuCursor;
     public int SelectedButton = 2;
     [SerializeField]
@@ -24,6 +26,20 @@ public class OptionsMenu : MonoBehaviour
     public Transform ButtonPosition3;
     public Transform ButtonPosition4;
     public static PauseMenuScriptMove instance;
+
+    private void Update()
+    {
+        if (Screen.fullScreen)
+        {
+            fullScreenCheckYes.SetActive(true);
+            fullScreenCheckNo.SetActive(false);
+        }
+        else
+        {
+            fullScreenCheckYes.SetActive(false);
+            fullScreenCheckNo.SetActive(true);
+        }
+    }
 
     #region MoveOptionsMenu
     private void OnPlay()
