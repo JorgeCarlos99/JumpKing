@@ -13,6 +13,7 @@ public class OptionsMenuPause : MonoBehaviour
     public AudioMixer audioMixer;
     public Slider sliderEffect;
     public Slider sliderMusic;
+    [SerializeField] private AudioSource moveMainMenuCursor;
     public int SelectedButton = 1;
     [SerializeField]
     private int NumberOfButtons;
@@ -36,22 +37,32 @@ public class OptionsMenuPause : MonoBehaviour
         if (SelectedButton == 1)
         {
             // Full Screen
-            if (Screen.fullScreen)
-            {
-                Debug.Log("No FullScreen");
-                FullScreen(false);
-            }
-            else
-            {
-                Debug.Log("FullScreen");
-                FullScreen(true);
-            }
+            FullScreenOptionsPauseMenu();
         }
         else if (SelectedButton == 2)
         {
             // Back
-            pauseMenuUI.SetActive(true);
-            optionsMenuUI.SetActive(false);
+            BackToPauseMenu();
+        }
+    }
+
+    public void BackToPauseMenu()
+    {
+        pauseMenuUI.SetActive(true);
+        optionsMenuUI.SetActive(false);
+    }
+
+    public void FullScreenOptionsPauseMenu()
+    {
+        if (Screen.fullScreen)
+        {
+            Debug.Log("No FullScreen");
+            FullScreen(false);
+        }
+        else
+        {
+            Debug.Log("FullScreen");
+            FullScreen(true);
         }
     }
 
@@ -75,7 +86,9 @@ public class OptionsMenuPause : MonoBehaviour
         if (SelectedButton > 1)
         {
             SelectedButton -= 1;
+            moveMainMenuCursor.Play();
         }
+
         MoveThePointer();
         return;
     }
@@ -85,7 +98,9 @@ public class OptionsMenuPause : MonoBehaviour
         if (SelectedButton < NumberOfButtons)
         {
             SelectedButton += 1;
+            moveMainMenuCursor.Play();
         }
+
         MoveThePointer();
         return;
     }

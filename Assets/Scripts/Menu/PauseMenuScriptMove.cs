@@ -19,6 +19,7 @@ public class PauseMenuScriptMove : MonoBehaviour
     public Slider sliderEffect;
     public Slider sliderMusic;
     public AudioMixer audioMixer;
+    [SerializeField] private AudioSource moveMainMenuCursor;
     public int SelectedButton = 1;
     [SerializeField]
     private int NumberOfButtons;
@@ -105,76 +106,99 @@ public class PauseMenuScriptMove : MonoBehaviour
         if (SelectedButton == 1)
         {
             // Resume
-            PauseMenu.instance.Resume();
+            ResumePauseMenu();
         }
         else if (SelectedButton == 2)
         {
             // SAVE AND MENU
-            PauseMenu.instance.LoadMenu();
+            SaveAndMenuFromPauseMenu();
         }
         else if (SelectedButton == 3)
         {
             // Options
-            pauseMenuUI.SetActive(false);
-            optionsMenuUI.SetActive(true);
-            GameIsPaused = true;
-            // Sound
-            float volumeMusicValue;
-            bool resultMusic = audioMixer.GetFloat("MusicVolume", out volumeMusicValue);
-            float valueLog10Music = volumeMusicValue / 20;
-
-            if (resultMusic)
-            {
-                sliderMusic.SetValueWithoutNotify(Mathf.Pow(10, valueLog10Music));
-            }
-
-            float volumeEffectValue;
-            bool resultEffect = audioMixer.GetFloat("EffectVolume", out volumeEffectValue);
-            float valueLog10Effect = volumeEffectValue / 20;
-
-            if (resultEffect)
-            {
-                sliderEffect.SetValueWithoutNotify(Mathf.Pow(10, valueLog10Effect));
-            }
-            // end sounds
+            OptionsMenuFromPauseMenu();
 
         }
         else if (SelectedButton == 4)
         {
             // Quit and save
-            SaveManager.instance.activeSave.position = PlayerControllerNoPhysics.instance.position;
-            SaveManager.instance.activeSave.spears = SpearCounter.instance.spears;
-            if (!GameObject.Find("SpearKaladinV1"))
-            {
-                Debug.Log("Saved 1 Spear");
-                SaveManager.instance.activeSave.lanza1 = "SpearKaladinV1";
-            }
-            if (!GameObject.Find("SpearKaladinV2"))
-            {
-                Debug.Log("Saved 2 Spear");
-                SaveManager.instance.activeSave.lanza2 = "SpearKaladinV2";
-            }
-            // Save Volume
-            float volumeMusicValue;
-            bool resultMusic = audioMixer.GetFloat("MusicVolume", out volumeMusicValue);
-            float volumeEffectValue;
-            bool resultEffect = audioMixer.GetFloat("EffectVolume", out volumeEffectValue);
-            SaveManager.instance.activeSave.musicVolume = volumeMusicValue;
-            SaveManager.instance.activeSave.effectVolume = volumeEffectValue;
-
-            SaveManager.instance.Save();
-            Debug.Log("saliste del videojuego pausa menu tal");
-            PauseMenu.instance.QuitGame();
+            QuitAndSaveFromPauseMenu();
         }
 
     }
+
+    public void QuitAndSaveFromPauseMenu()
+    {
+        SaveManager.instance.activeSave.position = PlayerControllerNoPhysics.instance.position;
+        SaveManager.instance.activeSave.spears = SpearCounter.instance.spears;
+        if (!GameObject.Find("SpearKaladinV1"))
+        {
+            Debug.Log("Saved 1 Spear");
+            SaveManager.instance.activeSave.lanza1 = "SpearKaladinV1";
+        }
+        if (!GameObject.Find("SpearKaladinV2"))
+        {
+            Debug.Log("Saved 2 Spear");
+            SaveManager.instance.activeSave.lanza2 = "SpearKaladinV2";
+        }
+        // Save Volume
+        float volumeMusicValue;
+        bool resultMusic = audioMixer.GetFloat("MusicVolume", out volumeMusicValue);
+        float volumeEffectValue;
+        bool resultEffect = audioMixer.GetFloat("EffectVolume", out volumeEffectValue);
+        SaveManager.instance.activeSave.musicVolume = volumeMusicValue;
+        SaveManager.instance.activeSave.effectVolume = volumeEffectValue;
+
+        SaveManager.instance.Save();
+        Debug.Log("saliste del videojuego pausa menu tal");
+        PauseMenu.instance.QuitGame();
+    }
+
+    public void OptionsMenuFromPauseMenu()
+    {
+        pauseMenuUI.SetActive(false);
+        optionsMenuUI.SetActive(true);
+        GameIsPaused = true;
+        // Sound
+        float volumeMusicValue;
+        bool resultMusic = audioMixer.GetFloat("MusicVolume", out volumeMusicValue);
+        float valueLog10Music = volumeMusicValue / 20;
+
+        if (resultMusic)
+        {
+            sliderMusic.SetValueWithoutNotify(Mathf.Pow(10, valueLog10Music));
+        }
+
+        float volumeEffectValue;
+        bool resultEffect = audioMixer.GetFloat("EffectVolume", out volumeEffectValue);
+        float valueLog10Effect = volumeEffectValue / 20;
+
+        if (resultEffect)
+        {
+            sliderEffect.SetValueWithoutNotify(Mathf.Pow(10, valueLog10Effect));
+        }
+        // end sounds
+    }
+
+    public static void SaveAndMenuFromPauseMenu()
+    {
+        PauseMenu.instance.LoadMenu();
+    }
+
+    public static void ResumePauseMenu()
+    {
+        PauseMenu.instance.Resume();
+    }
+
     private void OnButtonUp()
     {
         // Checks if the pointer needs to move down or up, in this case the poiter moves up one button
         if (SelectedButton > 1)
         {
             SelectedButton -= 1;
+            moveMainMenuCursor.Play();
         }
+
         MoveThePointer();
         return;
     }
@@ -184,7 +208,9 @@ public class PauseMenuScriptMove : MonoBehaviour
         if (SelectedButton < NumberOfButtons)
         {
             SelectedButton += 1;
+            moveMainMenuCursor.Play();
         }
+
         MoveThePointer();
         return;
     }
