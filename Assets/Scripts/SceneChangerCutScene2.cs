@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class SceneChangerCutScene1 : MonoBehaviour
+public class SceneChangerCutScene2 : MonoBehaviour
 {
     public float changeTime;
     public string sceneName;
@@ -18,7 +18,7 @@ public class SceneChangerCutScene1 : MonoBehaviour
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
         operation.allowSceneActivation = false;
-        yield return new WaitForSeconds(22.4f);
+        yield return new WaitForSeconds(4.1f);
         operation.allowSceneActivation = true;
     }
 

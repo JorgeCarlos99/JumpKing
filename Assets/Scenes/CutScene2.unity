@@ -260,7 +260,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 92130767}
-  - component: {fileID: 92130766}
+  - component: {fileID: 92130768}
   m_Layer: 0
   m_Name: SceneChanger
   m_TagString: Untagged
@@ -268,20 +268,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &92130766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 92130765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1fbdfd6901777b489c769933d827316, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  changeTime: 4.25
-  sceneName: LevelScenes
 --- !u!4 &92130767
 Transform:
   m_ObjectHideFlags: 0
@@ -297,6 +283,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &92130768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92130765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 870649a39a738df458af9ad5e233fcb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeTime: 4.25
+  sceneName: LevelScenes
 --- !u!1 &411036642
 GameObject:
   m_ObjectHideFlags: 0
