@@ -21,5 +21,4 @@ public class SceneChangerCutScene2 : MonoBehaviour
         yield return new WaitForSeconds(4.1f);
         operation.allowSceneActivation = true;
     }
-
 }
