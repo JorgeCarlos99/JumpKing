@@ -9,3 +9,5 @@ GamePause.Music,MUSIC,MUSICA
 GamePause.Effect,SOUND,SONIDO
 GamePause.FullScreen,Full Screen,Pantalla completa
 GamePause.Back,BACK,Volver
+GamePause.EaseModeON,Easy Mode ON,Modo facil ON
+GamePause.EaseModeOFF,Easy Mode OFF,Modo facil OFF

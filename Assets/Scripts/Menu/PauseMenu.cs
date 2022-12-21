@@ -18,6 +18,7 @@ public class PauseMenu : MonoBehaviour
     public static PauseMenu instance;
     public Slider sliderEffect;
     public Slider sliderMusic;
+    public GameObject chargedJumpSlider;
 
     private void Awake()
     {
@@ -36,6 +37,15 @@ public class PauseMenu : MonoBehaviour
             {
                 Pause();
             }
+        }
+
+        if (OptionsMenuPause.instance.ezMode)
+        {
+            chargedJumpSlider.SetActive(true);
+        }
+        else
+        {
+            chargedJumpSlider.SetActive(false);
         }
     }
     public void Resume()

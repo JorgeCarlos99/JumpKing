@@ -21,7 +21,15 @@ public class OptionsMenuPause : MonoBehaviour
     public Transform ButtonPosition2;
     public Transform ButtonPosition3;
     public Transform ButtonPosition4;
-    public static PauseMenuScriptMove instance;
+    public static OptionsMenuPause instance;
+    public bool ezMode = false;
+    public GameObject textEzModeON;
+    public GameObject textEzModeOFF;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Update()
     {
@@ -29,6 +37,15 @@ public class OptionsMenuPause : MonoBehaviour
         {
             pauseMenuUI.SetActive(true);
             optionsMenuUI.SetActive(false);
+        }
+
+        if (ezMode)
+        {
+            textEzModeON.SetActive(true);
+            textEzModeOFF.SetActive(false);
+        } else {
+            textEzModeON.SetActive(false);
+            textEzModeOFF.SetActive(true);
         }
     }
 
@@ -40,6 +57,18 @@ public class OptionsMenuPause : MonoBehaviour
             FullScreenOptionsPauseMenu();
         }
         else if (SelectedButton == 2)
+        {
+            // EzMode
+            if (textEzModeON.activeSelf)
+            {
+                ezMode = false;
+            }
+            else
+            {
+                ezMode = true;
+            }
+        }
+        else if (SelectedButton == 3)
         {
             // Back
             BackToPauseMenu();

@@ -20,6 +20,9 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     public Animation animKnockDown;
     public Animator m4a4animator;
     public Vector3 position;
+    public Slider sliderJumpValue;
+    public Gradient gradient;
+    public Image fill;
 
     [Header("Movement")]
     // 280 For more horizontal jump
@@ -28,6 +31,7 @@ public class PlayerControllerNoPhysics : MonoBehaviour
     private float moveInput;
     // 5 for slow fall
     public float fallMultiplier = 5;
+     [SerializeField]
     private float jumpValue = 0.0f;
     public float chargeJump = 1500f;
     public float maxJump = 800f;
@@ -91,20 +95,17 @@ public class PlayerControllerNoPhysics : MonoBehaviour
             // Position
             position = SaveManager.instance.activeSave.position;
             rb.transform.position = position;
-
-            // Music
-            // float musicVolumeLoad = SaveManager.instance.activeSave.musicVolume;
-            // audioMixer.SetFloat("MusicVolume", Mathf.Log10(musicVolumeLoad) * 20);
-
-            // Effect
-            // float effectVolumeLoad = SaveManager.instance.activeSave.effectVolume;
-            // audioMixer.SetFloat("EffectVolume", Mathf.Log10(effectVolumeLoad) * 20);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Set charge jump slider value
+        sliderJumpValue.SetValueWithoutNotify(jumpValue);
+        fill.color = gradient.Evaluate(sliderJumpValue.normalizedValue);
+
+
         //SAVE
         if (isInTheGroundAll())
         {
@@ -375,7 +376,6 @@ public class PlayerControllerNoPhysics : MonoBehaviour
         if (m4a4animator.GetCurrentAnimatorStateInfo(0).IsName("Knockdown") || m4a4animator.GetCurrentAnimatorStateInfo(0).IsName("Knockdown 0"))
         {
             canMove = false;
-            // Debug.Log("animation cosa tal2");
         }
         else
         {
